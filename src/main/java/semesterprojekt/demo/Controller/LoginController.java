@@ -19,10 +19,10 @@ public class LoginController
         return "adminmenu";
     }
 
-    @GetMapping("/loginError")
+    @GetMapping("/loginerror")
     public String loginError()
     {
-        return "LoginError";
+        return "loginerror";
     }
 
 
