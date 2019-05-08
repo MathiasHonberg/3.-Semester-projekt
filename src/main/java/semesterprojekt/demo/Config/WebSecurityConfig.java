@@ -65,7 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().and().formLogin()//
                 //.loginPage("/")
                 .loginProcessingUrl("/adminLogin") // Login URL
-                .defaultSuccessUrl("/admin", true) //LandingPage after successfull login
+                .defaultSuccessUrl("/adminMenu", true) //LandingPage after successfull login
                 //.successHandler(customizeAuthenticationSuccessHandler)
                 .failureUrl("/?error=true")//
                 .usernameParameter("username")//

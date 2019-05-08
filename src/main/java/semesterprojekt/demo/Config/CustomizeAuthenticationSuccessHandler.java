@@ -19,9 +19,8 @@ public class CustomizeAuthenticationSuccessHandler implements AuthenticationSucc
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request,
-                                        HttpServletResponse response, Authentication authentication)
-            throws IOException, ServletException {
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException
+    {
         //set our response to OK status
         response.setStatus(HttpServletResponse.SC_OK);
 
@@ -29,8 +28,10 @@ public class CustomizeAuthenticationSuccessHandler implements AuthenticationSucc
 
         logger.info("AT onAuthenticationSuccess(...) function!");
 
-        for (GrantedAuthority auth : authentication.getAuthorities()) {
-            if ("ADMIN".equals(auth.getAuthority())){
+        for (GrantedAuthority auth : authentication.getAuthorities())
+        {
+            if ("ADMIN".equals(auth.getAuthority()))
+            {
                 admin = true;
             }
         }
@@ -38,7 +39,7 @@ public class CustomizeAuthenticationSuccessHandler implements AuthenticationSucc
         if(admin){
             response.sendRedirect("/adminMenu");
         }else{
-            response.sendRedirect("/userCreate");
+            response.sendRedirect("/");
         }
     }
 }
