@@ -1,4 +1,4 @@
 package semesterprojekt.demo.Service;
 
-public class testService {
+public class TestService {
 }
