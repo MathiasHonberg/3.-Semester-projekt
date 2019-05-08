@@ -1,57 +1,71 @@
 package semesterprojekt.demo.Config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.context.annotation.Bean;
-
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+
+    @Autowired
+    CustomizeAuthenticationSuccessHandler customizeAuthenticationSuccessHandler;
+
+    //Initialize PasswordEncoder.
     @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder;
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
+
+    //Make login credentials for admin - (in memory).
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser("admin").password(passwordEncoder().encode("adminPass")).roles("ADMIN");
+    }
+
+
+    @Override
+    protected void configure(final HttpSecurity http) throws Exception {
 
         http.csrf().disable();
 
         // The pages does not require login
-        http.authorizeRequests().antMatchers("/").permitAll();
+        http.authorizeRequests()
+                .antMatchers("/")
+                .permitAll();
 
-        // /userInfo page requires login as ROLE_USER or ROLE_ADMIN.
-        // If no login, it will redirect to /login page.
-        http.authorizeRequests().antMatchers("/userCreate").access("hasRole('ROLE_USER')");
 
         // For ADMIN only.
-        http.authorizeRequests().antMatchers("/adminMenu").access("hasRole('ROLE_ADMIN')");
-        http.authorizeRequests().antMatchers("/editItem").access("hasRole('ROLE_ADMIN')");
-        http.authorizeRequests().antMatchers("/itemList").access("hasRole('ROLE_ADMIN')");
-        http.authorizeRequests().antMatchers("/updateItem/{updated}").access("hasRole('ROLE_ADMIN')");
-        http.authorizeRequests().antMatchers("/updateSending").access("hasRole('ROLE_ADMIN')");
-        http.authorizeRequests().antMatchers("/deleteSending").access("hasRole('ROLE_ADMIN')");
-        http.authorizeRequests().antMatchers("/deleteItem").access("hasRole('ROLE_ADMIN')");
-        http.authorizeRequests().antMatchers("/download").access("hasRole('ROLE_ADMIN')");
+        http.authorizeRequests()
+                .antMatchers("/adminMenu")
+                .hasRole("ADMIN");
 
 
         // When the user has logged in as XX.
         // But access a page that requires role YY,
         // AccessDeniedException will be thrown.
-        http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
+        http.authorizeRequests()
+                .and().exceptionHandling()
+                .accessDeniedPage("/403");
 
         // Config for Login Form
         http.authorizeRequests().and().formLogin()//
-                // Submit URL of login page.
-                .loginProcessingUrl("/j_spring_security_check") // Submit URL
-                .loginPage("/")//
+                //.loginPage("/")
+                .loginProcessingUrl("/adminLogin") // Login URL
+                .defaultSuccessUrl("/admin", true) //LandingPage after successfull login
                 //.successHandler(customizeAuthenticationSuccessHandler)
                 .failureUrl("/?error=true")//
                 .usernameParameter("username")//
@@ -60,7 +74,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
 
     }
-
-
-
 }
