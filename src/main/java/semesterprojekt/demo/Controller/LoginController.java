@@ -13,6 +13,12 @@ public class LoginController
         return "adminlogin";
     }
 
+    @GetMapping("/adminmenu")
+    public String adminMenu()
+    {
+        return "adminmenu";
+    }
+
     @GetMapping("/loginError")
     public String loginError()
     {
