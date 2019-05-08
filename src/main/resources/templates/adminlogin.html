@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xlmns:th="http://www.thymeleaf.org"
+      xmlns:xlmns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <h1>Login</h1>
-<form name='f' action="login" method='POST'>
+<form name='f' th:action="@{/adminlogin}" method='POST'>
     <table>
         <tr>
             <td>User:</td>
-            <td><input type='text' name='username' value=''></td>
+            <td><input type='text' placeholder="Username" name='username' value=''></td>
         </tr>
         <tr>
             <td>Password:</td>
-            <td><input type='password' name='password' /></td>
+            <td><input type='password' placeholder="Password" name='password' required=""/></td>
         </tr>
         <tr>
-            <td><input name="submit" type="submit" value="submit" /></td>
+            <td><input name="submit" type="submit" value="submit" required=""/></td>
         </tr>
     </table>
 </form>
