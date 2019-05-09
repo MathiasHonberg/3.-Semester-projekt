@@ -41,9 +41,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
     protected void configure(final HttpSecurity http) throws Exception
     {
         http.csrf().disable();
+        http.headers().frameOptions().disable();
+
 
         http.authorizeRequests()
-                .antMatchers("/adminmenu").hasRole("ADMIN")
+                .antMatchers("/adminmenu/**").hasRole("ADMIN")
+                .antMatchers("/h2/**").hasRole("ADMIN")
                 .and().formLogin().loginPage("/adminlogin")
                 .permitAll()
                 .defaultSuccessUrl("/adminmenu")
