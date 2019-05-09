@@ -11,7 +11,6 @@ public class AdminLoginController
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     private final String ADMIN_LOGIN = "/admin/adminlogin";
-    private final String ADMIN_MENU = "/admin/adminmenu";
     private final String ADMIN_LOGIN_ERROR = "/admin/loginerror";
 
     @GetMapping("/adminlogin")
@@ -20,14 +19,6 @@ public class AdminLoginController
         log.info("ADMIN_LOGIN action called...");
 
         return ADMIN_LOGIN;
-    }
-
-    @GetMapping("/adminmenu")
-    public String adminMenu()
-    {
-        log.info("ADMIN_MENU action called...");
-
-        return ADMIN_MENU;
     }
 
     @GetMapping("/loginerror")

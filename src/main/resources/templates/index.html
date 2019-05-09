@@ -1,12 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+
+<meta charset="UTF-8">
+<title>Title</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
+    .mySlides {display:none}
+    .w3-tag, .fa {cursor:pointer}
+    .w3-tag {height:15px;width:15px;padding:0;margin-top:6px}
+</style>
+
+
 <body>
 
-<h2>TEST!!!</h2>
+<!-- Navbar -->
+<div class="w3-top">
+    <div class="w3-bar w3-black w3-card">
+        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+        <a href="#band" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PRODUKTER</a>
+        <a href="#tour" class="w3-bar-item w3-button w3-padding-large w3-hide-small">SERVICES</a>
+        <a href="#PROJEKTER" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PROJEKTER</a>
+        <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT</a>
+        <a href="#ABOUT" class="w3-bar-item w3-button w3-padding-large w3-hide-small">OM KURLAND</a>
+        <a href="#JOBS" class="w3-bar-item w3-button w3-padding-large w3-hide-small">LEDIGE JOBS</a>
+        <div class="w3-dropdown-hover w3-hide-small">
+            <button class="w3-padding-large w3-button" title="More">MORE <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a href="#" class="w3-bar-item w3-button">Merchandise</a>
+                <a href="#" class="w3-bar-item w3-button">Extras</a>
+                <a href="#" class="w3-bar-item w3-button">Media</a>
+            </div>
+        </div>
+        <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
+    </div>
+</div>
 
+<!-- Content -->
+<div class="w3-content" style="max-width:800px;margin-top:80px;margin-bottom:80px">
+
+    <div class="w3-panel">
+        <h1><b>KURLAND SALES</b></h1>
+        <p>fuckersyyy</p>
+    </div>
+
+    <!-- Slideshow -->
+    <div class="w3-container">
+        <div class="w3-display-container mySlides">
+            <img src="https://cdn.dribbble.com/users/1732431/screenshots/4415224/dribbble.png" style="width:100%">
+            <!--<div class="w3-display-topleft w3-container w3-padding-32">-->
+            <!--<span class="w3-white w3-padding-large w3-animate-bottom">Lorem ipsum</span>-->
+            <!--</div>-->
+        </div>
+        <div class="w3-display-container mySlides">
+            <img src="https://i.kinja-img.com/gawker-media/image/upload/s--8JdncIsM--/c_fit,fl_progressive,q_80,w_636/1282256760863261762.jpg" style="width:100%">
+            <!--<div class="w3-display-middle w3-container w3-padding-32">-->
+            <!--<span class="w3-white w3-padding-large w3-animate-bottom">Klorim tipsum</span>-->
+            <!--</div>-->
+        </div>
+        <div class="w3-display-container mySlides">
+            <img src="https://scontent-frt3-2.xx.fbcdn.net/v/t1.0-9/30724614_10216013604954633_4182191052971736889_n.jpg?_nc_cat=110&_nc_ht=scontent-frt3-2.xx&oh=d48f90d802321e4043e8a2da008554d2&oe=5D2546FB" style="width:100%">
+            <!--<div class="w3-display-topright w3-container w3-padding-32">-->
+            <!--<span class="w3-white w3-padding-large w3-animate-bottom">Blorum pipsum</span>-->
+            <!--</div>-->
+        </div>
+    </div>
+
+    <!-- Slideshow next/previous buttons -->
+    <div class="w3-container w3-dark-grey w3-padding w3-xlarge">
+        <div class="w3-left" onclick="plusDivs(-1)"><i class="fa fa-arrow-circle-left w3-hover-text-teal"></i></div>
+        <div class="w3-right" onclick="plusDivs(1)"><i class="fa fa-arrow-circle-right w3-hover-text-teal"></i></div>
+
+        <div class="w3-center">
+            <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
+            <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
+            <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
+        </div>
+    </div>
+</div>
+
+<footer class="w3-container w3-padding-32 w3-light-grey w3-center">
+    <h4>Footer</h4>
+    <a href="#" class="w3-button w3-black w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+    <div class="w3-xlarge w3-section">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+    </div>
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+</footer>
+
+
+
+<script>
+    // Automatic Slideshow - change image every 4 seconds
+    var myIndex = 0;
+    carousel();
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) {myIndex = 1}
+        x[myIndex-1].style.display = "block";
+        setTimeout(carousel, 4000);
+    }
+    // Used to toggle the menu on small screens when clicking on the menu button
+    function myFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+    // When the user clicks anywhere outside of the modal, close it
+    var modal = document.getElementById('ticketModal');
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    // Slideshow
+    var slideIndex = 1;
+    showDivs(slideIndex);
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+    function currentDiv(n) {
+        showDivs(slideIndex = n);
+    }
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("demodots");
+        if (n > x.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = x.length} ;
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" w3-white", "");
+        }
+        x[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " w3-white";
+    }
+</script>
 </body>
 </html>

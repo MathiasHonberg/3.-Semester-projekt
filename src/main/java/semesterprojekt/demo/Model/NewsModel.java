@@ -4,18 +4,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.awt.image.BufferedImage;
+import java.sql.Blob;
 
 @Entity
-public class News {
+public class NewsModel {
 
     @Id  //primaryKey
     @GeneratedValue(strategy = GenerationType.IDENTITY) //autoincrement
     private Long id;
 
-    private BufferedImage image;
+    private java.sql.Blob image;
 
-    public News() {
+    public NewsModel() {
     }
 
     public Long getId() {
@@ -26,17 +26,17 @@ public class News {
         this.id = id;
     }
 
-    public BufferedImage getImage() {
+    public Blob getImage() {
         return image;
     }
 
-    public void setImage(BufferedImage image) {
+    public void setImage(Blob image) {
         this.image = image;
     }
 
     @Override
     public String toString() {
-        return "News{" +
+        return "NewsModel{" +
                 "id=" + id +
                 ", image=" + image +
                 '}';
