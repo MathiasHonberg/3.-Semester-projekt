@@ -16,16 +16,11 @@ public class HomeController {
 
     private final String INDEX = "index";
 
-
-    @Autowired
-    private NewsServiceImpl newsServiceImpl;
-
     @GetMapping("/")
     public String test(Model model)
     {
         log.info("INDEX action called...");
 
-        model.addAttribute("fetchAllNews",newsServiceImpl.fetchAllNews());
 
         log.info("INDEX action called...");
 

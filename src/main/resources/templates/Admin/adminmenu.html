@@ -10,11 +10,11 @@
 <body>
 
 <div class="container">
-    <h1 class="page-header">Active Venues</h1>
+    <h1 class="page-header">Active News</h1>
 
     <div>
         <a th:href="createvenue_admin">
-            <button class="btn btn-primary">Create Venue</button>
+            <button class="btn btn-primary">Create News</button>
         </a>
         <br>
         <br>
@@ -24,19 +24,17 @@
     <table class="table table-striped table-bordered table-hover">
         <thead>
         <tr>
+            
             <th>Id</th>
             <th>Images</th>
 
         </tr>
         </thead>
         <tbody>
-        <tr th:each="venue: ${venues}">
-            <td th:text="${venue.name}"/>
-            <td th:text="${venue.address}"/>
-            <td th:text="${venue.city}"/>
-            <td th:text="${venue.zip}"/>
-            <td th:text="${venue.email}"/>
-            <td th:text="${venue.phone}"/>
+        <tr th:each="fetchAllNews: ${fetchAllNews}">
+            <td th:text="${fetchAllNews.id}"/>
+            <td th:text="${fetchAllNews.images}"/>
+
             <td>
                 <a class="glyphicon glyphicon-cog" th:href="${'detailsvenue_admin/' + venue.venueId}">
                     <!--<button class="btn btn-info glyphicon glyphicon-cog">details</button>-->
