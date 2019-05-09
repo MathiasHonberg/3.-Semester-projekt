@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AdminLoginController
 {
-
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     private final String ADMIN_LOGIN = "/adminlogin";
@@ -21,7 +20,6 @@ public class AdminLoginController
         log.info("ADMIN_LOGIN action called...");
 
         return ADMIN_LOGIN;
-
     }
 
     @GetMapping(ADMIN_MENU)
