@@ -23,7 +23,7 @@ public class NavBarBootstrap implements ApplicationListener<ContextRefreshedEven
         //Navigation bar
         List<NavigationBar> navigationBarList = new ArrayList<>();
         NavigationBar home = new NavigationBar("Home", "/");
-        NavigationBar produkter = new NavigationBar("Produkter", "/kontakt");
+        NavigationBar produkter = new NavigationBar("Produkter", "/productcategories");
         NavigationBar projekter = new NavigationBar("Projekter", "/kontakt");
         NavigationBar kontakt = new NavigationBar("Om Kurland", "/kontakt");
         NavigationBar omKurland = new NavigationBar("Kontakt", "/kontakt");
