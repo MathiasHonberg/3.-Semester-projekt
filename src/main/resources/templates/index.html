@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <meta charset="UTF-8">
 <title>Title</title>
@@ -21,25 +21,14 @@
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
-        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
-        <a href="#band" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PRODUKTER</a>
-        <a href="#tour" class="w3-bar-item w3-button w3-padding-large w3-hide-small">SERVICES</a>
-        <a href="#PROJEKTER" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PROJEKTER</a>
-        <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT</a>
-        <a href="#ABOUT" class="w3-bar-item w3-button w3-padding-large w3-hide-small">OM KURLAND</a>
-        <a href="#JOBS" class="w3-bar-item w3-button w3-padding-large w3-hide-small">LEDIGE JOBS</a>
-        <div class="w3-dropdown-hover w3-hide-small">
-            <button class="w3-padding-large w3-button" title="More">MORE <i class="fa fa-caret-down"></i></button>
-            <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                <a href="#" class="w3-bar-item w3-button">Merchandise</a>
-                <a href="#" class="w3-bar-item w3-button">Extras</a>
-                <a href="#" class="w3-bar-item w3-button">Media</a>
-            </div>
+        <div th:each="navBar : ${navigationBar}">
+            <!--<a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>-->
+            <a th:href="${navBar.urlPath}" class="w3-bar-item w3-button w3-padding-large w3-hide-small" th:text="${navBar.name}"></a>
         </div>
         <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
     </div>
 </div>
+<br><br><br><br>
 
 <!-- Content -->
 <div class="w3-content" style="max-width:800px;margin-top:80px;margin-bottom:80px">
@@ -95,7 +84,7 @@
         <i class="fa fa-twitter w3-hover-opacity"></i>
         <i class="fa fa-linkedin w3-hover-opacity"></i>
     </div>
-    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">The A-Team</a></p>
 </footer>
 
 
