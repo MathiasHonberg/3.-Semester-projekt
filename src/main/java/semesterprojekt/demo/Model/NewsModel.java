@@ -16,7 +16,8 @@ import java.sql.Blob;
 @Getter
 @Setter
 @ToString
-public class NewsModel {
+public class NewsModel
+{
 
     @Id  //primaryKey
     @GeneratedValue(strategy = GenerationType.IDENTITY) //autoincrement
@@ -24,8 +25,7 @@ public class NewsModel {
 
     private String fileName;
 
-    //private java.sql.Blob image;
-    private byte[] image;
+    private Blob image;
 
     public NewsModel() {
     }

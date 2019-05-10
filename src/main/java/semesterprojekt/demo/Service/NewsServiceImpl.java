@@ -16,27 +16,17 @@ public class NewsServiceImpl implements INewsService
 {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    private SessionFactory hibernateFactory;
-
     @Autowired
     INewsRepo iNewsRepo;
-    /*
+
     @Override
     @Transactional
-    public NewsModel createNews(NewsModel newsModel)
+    public NewsModel saveImage(NewsModel newsModel)
     {
-
+        if(newsModel != null)
         iNewsRepo.save(newsModel);
 
         return null;
-    }
-    */
-
-    @Override
-    @Transactional
-    public void saveImage(NewsModel newsModel)
-    {
-        hibernateFactory.getCurrentSession().save(newsModel);
     }
 
     @Override

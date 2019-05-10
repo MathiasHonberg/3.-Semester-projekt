@@ -7,7 +7,7 @@ import java.io.IOException;
 public interface INewsService {
 
     //NewsModel createNews(NewsModel newsModel);
-    void saveImage(NewsModel newsModel);
+    NewsModel saveImage(NewsModel newsModel);
 
     Iterable<NewsModel> fetchAllNews();
 
