@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import semesterprojekt.demo.Model.NavigationBar;
+import semesterprojekt.demo.Service.KontaktServiceImpl;
 import semesterprojekt.demo.Service.NavigationBar.NavBarServiceImpl;
 import semesterprojekt.demo.Service.NewsServiceImpl;
 
@@ -32,6 +33,9 @@ public class HomeController
     @Autowired
     private NavBarServiceImpl navBarService;
 
+    @Autowired
+    private KontaktServiceImpl kontaktService;
+
     @GetMapping("/")
     public String test(Model model)
     {
@@ -51,6 +55,7 @@ public class HomeController
         log.info("KONTAKT action called...");
 
         model.addAttribute("navigationBar", navBarService.fetchAllNames());
+        model.addAttribute("kontakt", kontaktService.findAll());
 
         return KONTAKT;
     }
