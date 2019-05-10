@@ -1,8 +1,6 @@
 package semesterprojekt.demo.Model;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class NavigationBar
@@ -12,13 +10,19 @@ public class NavigationBar
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<NavigationObjects> navigationObjects = new HashSet<>();
+    private String urlPath;
 
     public NavigationBar()
     {
 
+    }
+
+    public NavigationBar(String name, String urlPath)
+    {
+        this.name = name;
+        this.urlPath = urlPath;
     }
 
     public Long getId()
@@ -26,17 +30,37 @@ public class NavigationBar
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Long id)
+    {
         this.id = id;
     }
 
-    public Set<NavigationObjects> getNavigationObjects()
+    public String getName()
     {
-        return navigationObjects;
+        return name;
     }
 
-    public void setNavigationObjects(Set<NavigationObjects> navigationObjects)
+    public void setName(String name)
     {
-        this.navigationObjects = navigationObjects;
+        this.name = name;
+    }
+
+    public String getUrlPath()
+    {
+        return urlPath;
+    }
+
+    public void setUrlPath(String urlPath)
+    {
+        this.urlPath = urlPath;
+    }
+
+    @Override
+    public String toString() {
+        return "NavigationBar{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", urlPath='" + urlPath + '\'' +
+                '}';
     }
 }
