@@ -12,6 +12,20 @@
 <div class="container">
     <h1 class="page-header">Active News</h1>
 
+    <form class="md-form" th:action="@{/uploadimage}" enctype="multipart/form-data" method="POST">
+        <div class="file-field">
+            <div class="btn btn-primary btn-sm float-left">
+                <span>Choose Image</span>
+                <input type="file" name="fileName">
+            </div>
+            <div class="file-path-wrapper">
+
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+
+
     <div>
         <a th:href="createvenue_admin">
             <button class="btn btn-primary">Create News</button>
