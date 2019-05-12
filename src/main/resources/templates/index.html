@@ -39,23 +39,12 @@
     </div>
 
     <!-- Slideshow -->
-    <div class="w3-container">
+    <div class="w3-container" th:each="fetchAllNews: ${fetchAllNewsPictures}">
         <div class="w3-display-container mySlides">
-            <img src="https://cdn.dribbble.com/users/1732431/screenshots/4415224/dribbble.png" style="width:100%">
+            <img th:src="${fetchAllNews.image}" style="width:100%" loop="true">
+
             <!--<div class="w3-display-topleft w3-container w3-padding-32">-->
             <!--<span class="w3-white w3-padding-large w3-animate-bottom">Lorem ipsum</span>-->
-            <!--</div>-->
-        </div>
-        <div class="w3-display-container mySlides">
-            <img src="https://i.kinja-img.com/gawker-media/image/upload/s--8JdncIsM--/c_fit,fl_progressive,q_80,w_636/1282256760863261762.jpg" style="width:100%">
-            <!--<div class="w3-display-middle w3-container w3-padding-32">-->
-            <!--<span class="w3-white w3-padding-large w3-animate-bottom">Klorim tipsum</span>-->
-            <!--</div>-->
-        </div>
-        <div class="w3-display-container mySlides">
-            <img src="https://scontent-frt3-2.xx.fbcdn.net/v/t1.0-9/30724614_10216013604954633_4182191052971736889_n.jpg?_nc_cat=110&_nc_ht=scontent-frt3-2.xx&oh=d48f90d802321e4043e8a2da008554d2&oe=5D2546FB" style="width:100%">
-            <!--<div class="w3-display-topright w3-container w3-padding-32">-->
-            <!--<span class="w3-white w3-padding-large w3-animate-bottom">Blorum pipsum</span>-->
             <!--</div>-->
         </div>
     </div>

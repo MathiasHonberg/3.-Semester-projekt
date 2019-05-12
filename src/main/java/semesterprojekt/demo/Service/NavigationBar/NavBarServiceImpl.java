@@ -1,5 +1,6 @@
 package semesterprojekt.demo.Service.NavigationBar;
 
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import semesterprojekt.demo.Model.NavigationBar;
@@ -7,6 +8,7 @@ import semesterprojekt.demo.Repo.NavigationBar.INavBarRepo;
 
 import java.util.Optional;
 
+@Log
 @Service
 public class NavBarServiceImpl implements INavBarService
 {

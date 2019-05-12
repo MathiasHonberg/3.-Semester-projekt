@@ -1,15 +1,13 @@
 package semesterprojekt.demo.Controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.java.Log;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+@Log
 @Controller
 public class AdminLoginController
 {
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
-
     private final String ADMIN_LOGIN = "/admin/adminlogin";
     private final String ADMIN_LOGIN_ERROR = "/admin/loginerror";
 

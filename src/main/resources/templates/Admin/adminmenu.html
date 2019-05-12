@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
 </head>
 <body>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 
 
 <div class="container">
@@ -15,49 +21,43 @@
     <form class="md-form" th:action="@{/uploadimage}" enctype="multipart/form-data" method="POST">
         <div class="file-field">
             <div class="btn btn-primary btn-sm float-left">
-                <span>Choose Image</span>
+                <span>Choose Image (Max size 1MB)</span>
+                <br>
                 <input type="file" name="fileName">
+                <button class="btn btn-primary" type="submit">Submit</button>
+
             </div>
             <div class="file-path-wrapper">
 
-                <button class="btn btn-primary" type="submit">Submit</button>
             </div>
         </div>
     </form>
-
-
-    <div>
-        <a th:href="createvenue_admin">
-            <button class="btn btn-primary">Create News</button>
-        </a>
-        <br>
-        <br>
-
-    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
     <table class="table table-striped table-bordered table-hover">
         <thead>
         <tr>
-            
-            <th>Id</th>
+
+            <th>id</th>
             <th>Images</th>
+            <th>Delete</th>
 
         </tr>
         </thead>
         <tbody>
         <tr th:each="fetchAllNews: ${fetchAllNews}">
-            <td th:text="${fetchAllNews.id}"/>
-            <td th:text="${fetchAllNews.images}"/>
 
+            <td th:text="${fetchAllNews.id}"/>
+            <td><img th:src="${fetchAllNews.image}" style="width:20%"></img></td>
             <td>
-                <a class="glyphicon glyphicon-cog" th:href="${'detailsvenue_admin/' + venue.venueId}">
+
+                <a class="glyphicon glyphicon-remove" th:href="${'delete/specificnews/' + fetchAllNews.id}">
                     <!--<button class="btn btn-info glyphicon glyphicon-cog">details</button>-->
-                </a>
-                <a class="glyphicon glyphicon-pencil" th:href="${'updatevenue_admin/' + venue.venueId}">
-                    <!--<button class="btn btn-warning glyphicon glyphicon-pencil">edit</button>-->
-                </a>
-                <a class="glyphicon glyphicon-remove" th:href="${'delete/venue/' + venue.venueId}">
-                    <!--<button class="btn btn-danger glyphicon glyphicon-remove">delete</button>-->
+
                 </a>
             </td>
         </tr>
@@ -66,6 +66,7 @@
     </table>
 
 </div>
+<script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
 
 </body>
 </html>
