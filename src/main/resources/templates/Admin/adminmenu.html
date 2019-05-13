@@ -58,7 +58,7 @@
             <td><img th:src="${fetchAllNews.image}" style="width:20%"></img></td>
             <td>
 
-                <a class="glyphicon glyphicon-remove" th:href="${'delete/specificnews/' + fetchAllNews.id} ">
+                <a class="glyphicon glyphicon-remove" th:href="${'delete/specificnews/' + fetchAllNews.id}" onclick="return confirmDelete()">
                     <!--<button class="btn btn-info glyphicon glyphicon-cog">details</button>-->
 
                 </a>
@@ -89,6 +89,14 @@
             alert("Please upgrade your browser, because your current browser lacks some new features we need!");
         }
     });
+
+    function confirmDelete() {
+        if (confirm("Delete Image?") == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 </script>
 
