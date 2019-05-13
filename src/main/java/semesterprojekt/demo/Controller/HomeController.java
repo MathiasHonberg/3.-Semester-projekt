@@ -7,13 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import semesterprojekt.demo.Model.NavigationBar;
-import semesterprojekt.demo.Service.KontaktServiceImpl;
+import semesterprojekt.demo.Service.ContactServiceImpl;
 import semesterprojekt.demo.Service.NavigationBar.NavBarServiceImpl;
 import semesterprojekt.demo.Service.NewsServiceImpl;
-
-import javax.jws.WebParam;
 
 @Controller
 public class HomeController
@@ -24,7 +20,7 @@ public class HomeController
     //RETURN STRINGS
     private final String REDIRECT = "redirect:/";
     private final String INDEX = "index";
-    private final String KONTAKT = "kontakt";
+    private final String CONTACT = "contact";
 
 
     @Autowired
@@ -34,7 +30,7 @@ public class HomeController
     private NavBarServiceImpl navBarService;
 
     @Autowired
-    private KontaktServiceImpl kontaktService;
+    private ContactServiceImpl contactService;
 
     @GetMapping("/")
     public String test(Model model)
@@ -49,15 +45,15 @@ public class HomeController
         return INDEX;
     }
 
-    @GetMapping("/kontakt")
+    @GetMapping("/contact")
     public String kontakt(Model model)
     {
-        log.info("KONTAKT action called...");
+        log.info("CONTACT action called...");
 
         model.addAttribute("navigationBar", navBarService.fetchAllNames());
-        model.addAttribute("kontakt", kontaktService.findAll());
+        model.addAttribute("contact", contactService.findAll());
 
-        return KONTAKT;
+        return CONTACT;
     }
 
 }

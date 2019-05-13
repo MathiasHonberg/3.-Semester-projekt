@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Contact</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {font-family: "Lato", sans-serif}
+        .mySlides {display: none}
+    </style>
+</head>
+<body>
+
+<!--<form method="post" action="/createkontakt">-->
+    <!--<input type="text" name="firstName" placeholder="fornavn">-->
+    <!--<br>-->
+    <!--<br>-->
+    <!--<input type="text" name="lastName" placeholder="efternavn">-->
+    <!--<br>-->
+    <!--<br>-->
+    <!--<input type="text" name="email" placeholder="email">-->
+    <!--<br>-->
+    <!--<br>-->
+    <!--<input type="text" name="adresse" placeholder="adresse">-->
+    <!--<br>-->
+    <!--<br>-->
+    <!--<input type="text" name="phoneNumber" placeholder="telefonnummer">-->
+    <!--<br>-->
+    <!--<br>-->
+    <!--<input type="submit" value="Opret Contact">-->
+<!--</form>-->
+
+
+<!-- The Contact Section -->
+<div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
+    <h2 class="w3-wide w3-center">Opret Kontakt</h2>
+    <div class="w3-row w3-padding-32">
+        <div class="w3-col m6">
+            <form action="/createcontact" method="post">
+                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                    <div class="w3-half">
+                        <input class="w3-input w3-border" type="text" placeholder="Fornavn" required name="firstName">
+                    </div>
+                    <div class="w3-half">
+                        <input class="w3-input w3-border" type="text" placeholder="Efternavn" required name="lastName">
+                    </div>
+                </div>
+                    <div style="margin:0 0px 8px 0px">
+                        <input class="w3-input w3-border" type="text" placeholder="Email" required name="email">
+                    </div>
+                        <div style="margin:0 0px 8px 0px">
+                            <input class="w3-input w3-border" type="text" placeholder="Adresse" required name="adresse">
+                        </div>
+                    <div>
+                        <input class="w3-input w3-border" type="text" placeholder="Telefon Nummer" required name="phoneNumber">
+                    </div>
+                <button class="w3-button w3-black w3-section w3-right" type="submit">Opret Kontakt</button>
+            </form>
+        </div>
+    </div>
+    <p th:each="contacts : ${contact}">
+        <span th:text="${contacts.firstName}"/>
+        <span th:text="${contacts.lastName}"/><br>
+        <span th:text="${contacts.adresse}"/><br>
+        <span th:text="${contacts.phoneNumber}"/><br>
+        <span th:text="${contacts.email}"/><br>
+
+        <a th:href="@{'deletecontact/' + ${contacts.id}}" onclick="return confirmDelete()">
+        <button class="w3-button w3-black w3-section">Slet</button>
+        </a>
+        <a th:href="@{'updatecontact/' + ${contacts.id}}">
+        <button class="w3-button w3-black w3-section" style="color:green">Opdater</button>
+        </a>
+    </p>
+</div>
+
+<script>
+    function confirmDelete() {
+        if (confirm("Delete Image?") == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+
+</body>
+</html>
