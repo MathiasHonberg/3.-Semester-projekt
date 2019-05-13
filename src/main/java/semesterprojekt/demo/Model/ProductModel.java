@@ -1,8 +1,7 @@
 package semesterprojekt.demo.Model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
@@ -25,19 +24,23 @@ public class ProductModel
 
     private String longDescription;
 
+    private String productFileName;
+
+    @Type(type="text")
+    private String productImage;
+
     @ManyToOne
     private ProductCategories productCategories;
 
-    public ProductModel()
-    {
-
+    public ProductModel() {
     }
 
-    public ProductModel(String name, double price, String shortDescription, String longDescription, ProductCategories productCategories) {
+    public ProductModel(String name, double price, String shortDescription, String longDescription, String productImage, ProductCategories productCategories) {
         this.name = name;
         this.price = price;
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
+        this.productImage = productImage;
         this.productCategories = productCategories;
     }
 }

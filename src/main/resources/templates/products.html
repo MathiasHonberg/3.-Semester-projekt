@@ -43,7 +43,7 @@
     <div th:each = "products : ${products}" style="margin-left: 40px">
         <div class="w3-quarter w3-container w3-margin-bottom">
             <a th:href="${'/productinfo/' + products.id}">
-            <img src="https://scontent-dfw5-1.cdninstagram.com/vp/c2cfb198dc0445f3d8d5b1bbecd7761c/5D54C1FB/t51.2885-19/s150x150/16463955_392110677817121_6298838546270650368_a.jpg?_nc_ht=scontent-dfw5-1.cdninstagram.com" alt="TobiasNK" style="width:90%">
+            <img th:src="${products.productImage}" alt="TobiasNK" style="width:90%">
             </a>
                 <div class="w3-container w3-white">
                     <p><b><span th:text="${products.name}" style="font-size: large"></span></b></p>

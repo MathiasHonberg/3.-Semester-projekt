@@ -3,8 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Contact</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {font-family: "Lato", sans-serif}
+        .mySlides {display: none}
+    </style>
 </head>
 <body>
+
+<!-- Navbar -->
+<div class="w3-top">
+    <div class="w3-bar w3-black w3-card">
+        <a href="/adminmenu" class="w3-bar-item w3-button w3-padding-large">Admin Menu</a>
+        <a href="/admincategory" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Category</a>
+        <a href="/adminproduct" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Product</a>
+        <a href="/adminkontakt" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Kontakt</a>
+        <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
+    </div>
+</div>
+<br><br><br><br>
 
 <form method="post" action="/createkontakt">
     <input type="text" name="firstName" placeholder="fornavn">

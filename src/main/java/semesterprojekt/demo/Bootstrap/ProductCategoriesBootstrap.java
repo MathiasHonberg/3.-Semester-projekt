@@ -28,21 +28,21 @@ public class ProductCategoriesBootstrap implements ApplicationListener<ContextRe
         ProductCategories elapparater = new ProductCategories("Elapparater",  "https://shop11399.hstatic.dk/upload_dir/shop/category/el-apparater.png");
 
         //Products
-        ProductModel fjersyn1 = new ProductModel("Phillips", 7500, "Good quality", "Really good quality actually", fjernsyn);
-        ProductModel fjersyn2 = new ProductModel("Samsung", 6500.50, "Best quality", "The best quality in the world", fjernsyn);
-        ProductModel fjersyn3 = new ProductModel("LG", 5400, "Good quality", "Really good quality actually", fjernsyn);
-        ProductModel køleskabe1 = new ProductModel("Maffeno", 3000, "Low price", "perfect to store food", køleskabe);
-        ProductModel køleskabe2 = new ProductModel("Fexez", 3800, "yes", "Pretty good actually", køleskabe);
-        ProductModel køleskabe3 = new ProductModel("SENZ", 4000.5, "Amazing good", "amazingly perfect", køleskabe);
-        ProductModel vin1 = new ProductModel("Amarone", 230, "nice", "really nice", vin);
-        ProductModel vin2 = new ProductModel("bourgogne", 300, "Tasteful", "quality wine", vin);
-        ProductModel vin3 = new ProductModel("Hardy's", 240, "Lækkert", "Virkelig lækker vin", vin);
-        ProductModel vin4 = new ProductModel("Yellow Tail", 300, "Pragtfuld", "Lækker vin!", vin);
-        ProductModel vin5 = new ProductModel("Jacobs creek", 430, "yep", "SMukt!", vin);
-        ProductModel vin6 = new ProductModel("Beringer", 290, "God", "Udmærkert vin", vin);
-        ProductModel elapparater1 = new ProductModel("Kaffe maskine", 501.50, "Brugbar", "Brugbar til kaffe", elapparater);
-        ProductModel elapparater2 = new ProductModel("Baby alarmer", 730, "Effektiv", "Virkelig effektiv apparat", elapparater);
-        ProductModel elapparater3 = new ProductModel("Støvsuger", 300, "Lige til brug", "Virker 100 % som den skal", elapparater);
+        ProductModel fjersyn1 = new ProductModel("Phillips", 7500, "Good quality", "Really good quality actually", "https://scontent-dfw5-1.cdninstagram.com/vp/c2cfb198dc0445f3d8d5b1bbecd7761c/5D54C1FB/t51.2885-19/s150x150/16463955_392110677817121_6298838546270650368_a.jpg?_nc_ht=scontent-dfw5-1.cdninstagram.com", fjernsyn);
+        ProductModel fjersyn2 = new ProductModel("Samsung", 6500.50, "Best quality", "The best quality in the world","https://scontent-dfw5-1.cdninstagram.com/vp/c2cfb198dc0445f3d8d5b1bbecd7761c/5D54C1FB/t51.2885-19/s150x150/16463955_392110677817121_6298838546270650368_a.jpg?_nc_ht=scontent-dfw5-1.cdninstagram.com", fjernsyn);
+        ProductModel fjersyn3 = new ProductModel("LG", 5400, "Good quality", "Really good quality actually","https://scontent-dfw5-1.cdninstagram.com/vp/c2cfb198dc0445f3d8d5b1bbecd7761c/5D54C1FB/t51.2885-19/s150x150/16463955_392110677817121_6298838546270650368_a.jpg?_nc_ht=scontent-dfw5-1.cdninstagram.com", fjernsyn);
+        ProductModel køleskabe1 = new ProductModel("Maffeno", 3000, "Low price", "perfect to store food", "https://scontent-dfw5-1.cdninstagram.com/vp/c2cfb198dc0445f3d8d5b1bbecd7761c/5D54C1FB/t51.2885-19/s150x150/16463955_392110677817121_6298838546270650368_a.jpg?_nc_ht=scontent-dfw5-1.cdninstagram.com", køleskabe);
+        ProductModel køleskabe2 = new ProductModel("Fexez", 3800, "yes", "Pretty good actually", "https://scontent-dfw5-1.cdninstagram.com/vp/c2cfb198dc0445f3d8d5b1bbecd7761c/5D54C1FB/t51.2885-19/s150x150/16463955_392110677817121_6298838546270650368_a.jpg?_nc_ht=scontent-dfw5-1.cdninstagram.com",  køleskabe);
+        ProductModel køleskabe3 = new ProductModel("SENZ", 4000.5, "Amazing good", "amazingly perfect", "https://scontent-dfw5-1.cdninstagram.com/vp/c2cfb198dc0445f3d8d5b1bbecd7761c/5D54C1FB/t51.2885-19/s150x150/16463955_392110677817121_6298838546270650368_a.jpg?_nc_ht=scontent-dfw5-1.cdninstagram.com", køleskabe);
+        ProductModel vin1 = new ProductModel("Amarone", 230, "nice", "really nice", "https://scontent-dfw5-1.cdninstagram.com/vp/c2cfb198dc0445f3d8d5b1bbecd7761c/5D54C1FB/t51.2885-19/s150x150/16463955_392110677817121_6298838546270650368_a.jpg?_nc_ht=scontent-dfw5-1.cdninstagram.com", vin);
+        ProductModel vin2 = new ProductModel("bourgogne", 300, "Tasteful", "quality wine", "https://scontent-dfw5-1.cdninstagram.com/vp/c2cfb198dc0445f3d8d5b1bbecd7761c/5D54C1FB/t51.2885-19/s150x150/16463955_392110677817121_6298838546270650368_a.jpg?_nc_ht=scontent-dfw5-1.cdninstagram.com", vin);
+        ProductModel vin3 = new ProductModel("Hardy's", 240, "Lækkert", "Virkelig lækker vin", "https://scontent-dfw5-1.cdninstagram.com/vp/c2cfb198dc0445f3d8d5b1bbecd7761c/5D54C1FB/t51.2885-19/s150x150/16463955_392110677817121_6298838546270650368_a.jpg?_nc_ht=scontent-dfw5-1.cdninstagram.com", vin);
+        ProductModel vin4 = new ProductModel("Yellow Tail", 300, "Pragtfuld", "Lækker vin!", "https://scontent-dfw5-1.cdninstagram.com/vp/c2cfb198dc0445f3d8d5b1bbecd7761c/5D54C1FB/t51.2885-19/s150x150/16463955_392110677817121_6298838546270650368_a.jpg?_nc_ht=scontent-dfw5-1.cdninstagram.com", vin);
+        ProductModel vin5 = new ProductModel("Jacobs creek", 430, "yep", "SMukt!", "https://scontent-dfw5-1.cdninstagram.com/vp/c2cfb198dc0445f3d8d5b1bbecd7761c/5D54C1FB/t51.2885-19/s150x150/16463955_392110677817121_6298838546270650368_a.jpg?_nc_ht=scontent-dfw5-1.cdninstagram.com", vin);
+        ProductModel vin6 = new ProductModel("Beringer", 290, "God", "Udmærkert vin", "https://scontent-dfw5-1.cdninstagram.com/vp/c2cfb198dc0445f3d8d5b1bbecd7761c/5D54C1FB/t51.2885-19/s150x150/16463955_392110677817121_6298838546270650368_a.jpg?_nc_ht=scontent-dfw5-1.cdninstagram.com", vin);
+        ProductModel elapparater1 = new ProductModel("Kaffe maskine", 501.50, "Brugbar", "Brugbar til kaffe", "https://scontent-dfw5-1.cdninstagram.com/vp/c2cfb198dc0445f3d8d5b1bbecd7761c/5D54C1FB/t51.2885-19/s150x150/16463955_392110677817121_6298838546270650368_a.jpg?_nc_ht=scontent-dfw5-1.cdninstagram.com", elapparater);
+        ProductModel elapparater2 = new ProductModel("Baby alarmer", 730, "Effektiv", "Virkelig effektiv apparat", "https://scontent-dfw5-1.cdninstagram.com/vp/c2cfb198dc0445f3d8d5b1bbecd7761c/5D54C1FB/t51.2885-19/s150x150/16463955_392110677817121_6298838546270650368_a.jpg?_nc_ht=scontent-dfw5-1.cdninstagram.com", elapparater);
+        ProductModel elapparater3 = new ProductModel("Støvsuger", 300, "Lige til brug", "Virker 100 % som den skal", "https://scontent-dfw5-1.cdninstagram.com/vp/c2cfb198dc0445f3d8d5b1bbecd7761c/5D54C1FB/t51.2885-19/s150x150/16463955_392110677817121_6298838546270650368_a.jpg?_nc_ht=scontent-dfw5-1.cdninstagram.com", elapparater);
 
         //fjernsyn
         fjernsyn.getProductModels().add(fjersyn1);
