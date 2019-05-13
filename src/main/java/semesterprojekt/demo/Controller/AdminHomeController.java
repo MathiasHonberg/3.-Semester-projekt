@@ -33,9 +33,10 @@ public class AdminHomeController
     @PostMapping("/uploadimage")
     public String uploadImage(@RequestParam("fileName") MultipartFile imageFile) throws Exception
     {
+
         if(!imageFile.isEmpty())
         {
-        newsServiceImpl.saveImage(imageFile);
+            newsServiceImpl.saveImage(imageFile);
         }
 
         return REDIRECT_ADMIN_MENU;

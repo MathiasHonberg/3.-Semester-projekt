@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
 </head>
+
 <body>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
 
 <div class="container">
-    <h1 class="page-header">Active News</h1>
+    <h1 class="page-header">Home page News</h1>
 
     <form class="md-form" th:action="@{/uploadimage}" enctype="multipart/form-data" method="POST">
         <div class="file-field">
             <div class="btn btn-primary btn-sm float-left">
                 <span>Choose Image (Max size 1MB)</span>
                 <br>
-                <input type="file" name="fileName">
-                <button class="btn btn-primary" type="submit">Submit</button>
+                <input type="file" name="fileName" id="i_file">
+                <button class="btn btn-primary" type="submit" id="i_submit">Submit</button>
 
             </div>
             <div class="file-path-wrapper">
@@ -42,8 +45,8 @@
         <thead>
         <tr>
 
-            <th>id</th>
-            <th>Images</th>
+            <th>Id</th>
+            <th>Image</th>
             <th>Delete</th>
 
         </tr>
@@ -55,7 +58,7 @@
             <td><img th:src="${fetchAllNews.image}" style="width:20%"></img></td>
             <td>
 
-                <a class="glyphicon glyphicon-remove" th:href="${'delete/specificnews/' + fetchAllNews.id}">
+                <a class="glyphicon glyphicon-remove" th:href="${'delete/specificnews/' + fetchAllNews.id} ">
                     <!--<button class="btn btn-info glyphicon glyphicon-cog">details</button>-->
 
                 </a>
@@ -66,7 +69,29 @@
     </table>
 
 </div>
-<script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
+
+<script>
+    $('#i_submit').click( function() {
+        //check whether browser fully supports all File API
+        if (window.File && window.FileReader && window.FileList && window.Blob)
+        {
+            //get the file size and file type from file input field
+            var fsize = $('#i_file')[0].files[0].size;
+
+            if(fsize>1048576) //do something if file size more than 1 mb (1048576)
+            {
+                var new_num = fsize.toFixed(1)/1000000;
+                var imageSize = new_num.toFixed(1)
+                alert(imageSize +" MB\nImage Size must be below 1MB!");
+                event.preventDefault();
+            }
+        }else{
+            alert("Please upgrade your browser, because your current browser lacks some new features we need!");
+        }
+    });
+
+</script>
 
 </body>
+
 </html>
