@@ -12,7 +12,7 @@ public interface ICategoriesService
 
     ProductCategories findProductCategory(Long id);
 
-    Iterable<ProductCategories> fetchAll();
+    Iterable<ProductCategories> fetchAllCategories();
 
     void deleteProductCategory(Long id);
 

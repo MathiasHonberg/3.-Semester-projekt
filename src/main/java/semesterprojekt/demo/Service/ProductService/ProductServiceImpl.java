@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import semesterprojekt.demo.Model.ProductModel;
 import semesterprojekt.demo.Repo.ProductRepo.IProductRepo;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,13 +21,13 @@ public class ProductServiceImpl implements IProductService
     }
 
     @Override
-    public Optional<ProductModel> findProduct(Long id)
+    public ProductModel findProduct(Long id)
     {
-        return iProductRepo.findById(id);
+        return iProductRepo.findAllById(id);
     }
 
     @Override
-    public Iterable<ProductModel> fetchAll()
+    public Iterable<ProductModel> fetchAllProducts()
     {
         return iProductRepo.findAll();
     }
@@ -36,4 +37,11 @@ public class ProductServiceImpl implements IProductService
     {
         iProductRepo.deleteById(id);
     }
+
+//    @Override
+//    public List<ProductModel> findProductsByCategories(Long id)
+//    {
+//        System.out.println("ID: " + id);
+//        return iProductRepo.findProductsByCategories(id);
+//    }
 }

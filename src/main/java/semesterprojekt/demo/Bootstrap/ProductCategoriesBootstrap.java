@@ -22,10 +22,10 @@ public class ProductCategoriesBootstrap implements ApplicationListener<ContextRe
 
         //Product Categories
         List<ProductCategories> productCategoriesList = new ArrayList<>();
-        ProductCategories fjernsyn = new ProductCategories("Fjernsyn");
-        ProductCategories køleskabe = new ProductCategories("Køleskabe");
-        ProductCategories vin = new ProductCategories("Vin");
-        ProductCategories elapparater = new ProductCategories("Elapparater");
+        ProductCategories fjernsyn = new ProductCategories("Fjernsyn","https://www.lg.com/sa_en/images/tvs/md05860015/gallery/86SJ957V-Desktop_01-22717.jpg");
+        ProductCategories køleskabe = new ProductCategories("Køleskabe", "https://imagehvidevarer.foetex.dk/retrievefile.axd?file=1374103&mh=350&mw=350&ps=FullSize&q=95&hash=0E926AAAB9C9AFE594276A391187E7003B6F738A");
+        ProductCategories vin = new ProductCategories("Vin", "https://i0.wp.com/gastromand.dk/wordpress/wp-content/uploads/2017/09/Vin.png?resize=700%2C325&ssl=1");
+        ProductCategories elapparater = new ProductCategories("Elapparater",  "https://shop11399.hstatic.dk/upload_dir/shop/category/el-apparater.png");
 
         //Products
         ProductModel fjersyn1 = new ProductModel("Phillips", 7500, "Good quality", "Really good quality actually", fjernsyn);

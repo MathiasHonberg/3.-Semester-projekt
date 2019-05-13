@@ -21,6 +21,8 @@ public class ProductCategories
 
     private String name;
 
+    private String picture;
+
     @OneToMany(cascade = CascadeType.ALL)
     private Set<ProductModel> productModels = new HashSet<>();
 
@@ -29,7 +31,9 @@ public class ProductCategories
 
     }
 
-    public ProductCategories(String name) {
+    public ProductCategories(String name, String picture)
+    {
         this.name = name;
+        this.picture = picture;
     }
 }

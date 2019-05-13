@@ -27,7 +27,7 @@ public class CategoriesServiceImpl implements ICategoriesService
     }
 
     @Override
-    public Iterable<ProductCategories> fetchAll()
+    public Iterable<ProductCategories> fetchAllCategories()
     {
         return iCategoriesRepo.findAll();
     }

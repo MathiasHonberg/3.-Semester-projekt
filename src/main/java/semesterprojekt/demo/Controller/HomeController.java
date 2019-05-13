@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import semesterprojekt.demo.Model.NavigationBar;
+import semesterprojekt.demo.Model.ProductModel;
 import semesterprojekt.demo.Service.NavigationBar.NavBarServiceImpl;
 import semesterprojekt.demo.Service.NewsServiceImpl;
 import semesterprojekt.demo.Service.ProductService.CategoriesServiceImpl;
@@ -17,6 +18,8 @@ import semesterprojekt.demo.Service.ProductService.ICategoriesService;
 import semesterprojekt.demo.Service.ProductService.ProductServiceImpl;
 
 import javax.jws.WebParam;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class HomeController
@@ -30,6 +33,7 @@ public class HomeController
     private final String KONTAKT = "kontakt";
     private final String PRODUCTCATEGORIES = "productcategories";
     private final String PRODUCTS = "products";
+    private final String PRODUCTINFO = "productinfo";
 
 
     @Autowired
@@ -63,7 +67,7 @@ public class HomeController
         log.info("ProductCategories action called...");
 
         model.addAttribute("navigationBar", navBarService.fetchAllNames());
-        model.addAttribute("productCategories", categoriesService.fetchAll());
+        model.addAttribute("productCategories", categoriesService.fetchAllCategories());
 
         return PRODUCTCATEGORIES;
     }
@@ -71,14 +75,37 @@ public class HomeController
     @GetMapping("/products/{id}")
     public String products(@PathVariable("id") Long id, Model model)
     {
-        log.info("Products action called with category ID: " + id);
+        log.info("Products with categoryID " + id + " action is called...");
+
+        Iterable<ProductModel> allProducts = productService.fetchAllProducts();
+        List<ProductModel> neededProducts = new ArrayList<>();
+
+        for(ProductModel p: allProducts)
+        {
+            if(p.getProductCategories().getId() == id)
+            {
+                neededProducts.add(p);
+            }
+        }
 
         model.addAttribute("navigationBar", navBarService.fetchAllNames());
+        model.addAttribute("products", neededProducts);
         model.addAttribute("category", categoriesService.findProductCategory(id));
-        model.addAttribute("products", productService.fetchAll());
-        model.addAttribute("categoryid", id);
+
 
         return PRODUCTS;
+    }
+
+    @GetMapping("/productinfo/{id}")
+    public String productInfo(@PathVariable("id") Long id, Model model)
+    {
+        log.info("Product Info with id: " + id + " action called...");
+
+        model.addAttribute("navigationBar", navBarService.fetchAllNames());
+        model.addAttribute("productinfo", productService.findProduct(id));
+
+        return PRODUCTINFO;
+
     }
 
     @GetMapping("/kontakt")

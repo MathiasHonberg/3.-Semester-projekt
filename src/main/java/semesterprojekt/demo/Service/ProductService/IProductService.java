@@ -3,18 +3,18 @@ package semesterprojekt.demo.Service.ProductService;
 import org.springframework.stereotype.Service;
 import semesterprojekt.demo.Model.ProductModel;
 
-import java.util.Optional;
-
 @Service
 public interface IProductService
 {
     ProductModel addProduct(ProductModel productModel);
 
-    Optional<ProductModel> findProduct(Long id);
+    ProductModel findProduct(Long id);
 
-    Iterable<ProductModel> fetchAll();
+    Iterable<ProductModel> fetchAllProducts();
 
     void deleteProduct(Long id);
+
+//    List<ProductModel> findProductsByCategories(Long id);
 
 
 }

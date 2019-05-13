@@ -9,11 +9,11 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-    html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
+    html,body,h1,h2,h3,h4 {font-family:"Raleway", sans-serif}
 
 </style>
 
-<body>
+<body class="w3-white">
 
 <!-- Navbar -->
 <div class="w3-top">
@@ -28,43 +28,32 @@
 <br><br><br><br>
 
 <!-- Content -->
-<div>
+<div class="w3-main">
     <h1>Category: <span th:text="${category.name}"></span></h1>
-    <form th:method="Put" th:action="@{/products}" th:object="${category}">
-        <!--If you dont send the ID, JPA will create a new student object-->
-        <input type="hidden" th:field="${category.id}"/>
-    </form>
-</div>
+    <!--<form th:method="GET" th:action="@{/products}" th:object="${category}">-->
+        <!--&lt;!&ndash;If you dont send the ID, JPA will create a new student object&ndash;&gt;-->
+        <!--<input type="hidden" th:field="${category.id}"/>-->
+    <!--</form>-->
+
     <br>
     <h3>Products</h3>
     <br>
-<div class="w3-content w3-padding" style="max-width:1564px">
+<!-- First Photo Grid-->
+<div class="w3-row-padding" style="max-width:1500px">
     <div th:each = "products : ${products}" style="margin-left: 40px">
-        <div class="w3-col l3 m6 w3-margin-bottom">
-            <div class="w3-display-container">
-                <!--<a th:href="${'products/' + productCategories.id}">-->
-                    <div class="w3-display-topleft w3-black w3-padding" th:text = "${products.name}"></div>
-                    <img src="https://scontent-dfw5-1.cdninstagram.com/vp/c2cfb198dc0445f3d8d5b1bbecd7761c/5D54C1FB/t51.2885-19/s150x150/16463955_392110677817121_6298838546270650368_a.jpg?_nc_ht=scontent-dfw5-1.cdninstagram.com" alt="TobiasNK" style="width:90%">
-                <!--</a>-->
-            </div>
+        <div class="w3-quarter w3-container w3-margin-bottom">
+            <a th:href="${'/productinfo/' + products.id}">
+            <img src="https://scontent-dfw5-1.cdninstagram.com/vp/c2cfb198dc0445f3d8d5b1bbecd7761c/5D54C1FB/t51.2885-19/s150x150/16463955_392110677817121_6298838546270650368_a.jpg?_nc_ht=scontent-dfw5-1.cdninstagram.com" alt="TobiasNK" style="width:90%">
+            </a>
+                <div class="w3-container w3-white">
+                    <p><b><span th:text="${products.name}" style="font-size: large"></span></b></p>
+                    <p><span th:text="${products.shortDescription}"></span></p>
+                </div>
         </div>
     </div>
 </div>
-<!--<h1><span th:text="${categoryid}"></span></h1>-->
-<!--<div class="w3-container w3-padding-32" id="productCategories">-->
-    <!--<h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Products</h3>-->
-<!--</div>-->
+</div>
 
-<!--<div th:each = "productCategories : ${productCategories}" style="margin-left: 40px">-->
-    <!--<div class="w3-col l3 m6 w3-margin-bottom">-->
-        <!--<div class="w3-display-container">-->
-            <!--<div class="w3-display-topleft w3-black w3-padding" th:text = "${productCategories.name}"></div>-->
-            <!--&lt;!&ndash;<a th:href="${'kitchen/kitchen/' + kitchen.idk}">&ndash;&gt;-->
-            <!--&lt;!&ndash;<img th:src="${kitchen.picture}" alt="Kitchen" style="width:90%">&ndash;&gt;-->
-            <!--&lt;!&ndash;</a>&ndash;&gt;-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
 <br><br><br><br><br>
 <footer id="footer" class="w3-container w3-padding-32 w3-light-grey w3-center">
     <h4>Footer</h4>
