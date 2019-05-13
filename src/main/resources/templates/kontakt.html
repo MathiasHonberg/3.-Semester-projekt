@@ -27,9 +27,51 @@
 </div>
 <br><br><br><br>
 
-<!-- Content -->
-<h1>NAVIGATION BAR VIRKER !!!!</h1>
+ <!--Content-->
+<div th:each="kontakts : ${kontakt}">
+<h3>Navn</h3>
+<p>
+    <span th:text="${kontakts.firstName}"/>
+    <span th:text="${kontakts.lastName}"/>
+</p>
+<h3>Email</h3>
+<p>
+    <span th:text="${kontakts.email}"/>
+</p>
+<h3>Adresse</h3>
+<p>
+    <span th:text="${kontakts.adresse}"/>
+</p>
+<h3>Telefon Nummer</h3>
+<p>
+    <span th:text="${kontakts.phoneNumber}"/>
+</p>
+</div>
 
+
+
+<!--<div th:each = "kontakts : ${kontakt}">-->
+    <!--&lt;!&ndash;<div class="w3-col l3 m6 w3-margin-bottom">&ndash;&gt;-->
+        <!--<div class="w3-display-container">-->
+            <!--<div class="w3-display-topleft w3-black w3-padding" th:text = "${kontakts.firstName}"></div>-->
+            <!--<div class="w3-display-topleft w3-black w3-padding" th:text = "${kontakts.lastName}"></div>-->
+            <!--<div class="w3-display-topleft w3-black w3-padding" th:text = "${kontakts.email}"></div>-->
+            <!--<div class="w3-display-topleft w3-black w3-padding" th:text = "${kontakts.adresse}"></div>-->
+            <!--<div class="w3-display-topleft w3-black w3-padding" th:text = "${kontakts.phoneNumber}"></div>-->
+        <!--</div>-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--</div>-->
+
+
+
+
+
+
+
+
+
+
+<!-- Footer -->
     <footer id="footer" class="w3-container w3-padding-32 w3-light-grey w3-center">
         <h4>Footer</h4>
         <a href="#" class="w3-button w3-black w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>

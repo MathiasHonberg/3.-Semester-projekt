@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import semesterprojekt.demo.Model.Kontakt;
+import semesterprojekt.demo.Service.IKontaktService;
 import semesterprojekt.demo.Service.NewsServiceImpl;
 
 @Log
@@ -14,6 +16,10 @@ public class AdminHomeController
 {
     private final String ADMIN_MENU = "/admin/adminmenu";
     private final String REDIRECT_ADMIN_MENU= "redirect:/adminmenu";
+    private final String ADMIN_KONTAKT = "/admin/adminkontakt";
+
+    @Autowired
+    IKontaktService kontaktService;
 
     @Autowired
     private NewsServiceImpl newsServiceImpl;
@@ -29,6 +35,7 @@ public class AdminHomeController
 
         return ADMIN_MENU;
     }
+
 
     @PostMapping("/uploadimage")
     public String uploadImage(@RequestParam("fileName") MultipartFile imageFile) throws Exception
@@ -59,6 +66,20 @@ public class AdminHomeController
 
     }
 
+    @GetMapping("/adminkontakt")
+    public String adminkontakt()
+    {
+
+        log.info("ADMIN_KONTAKT action called...");
+        return ADMIN_KONTAKT;
+    }
+
+    @PostMapping("/createkontakt")
+    public String createContact(Kontakt kontakt)
+    {
+        kontaktService.addKontakt(kontakt);
+        return ADMIN_KONTAKT;
+    }
 }
 
 
