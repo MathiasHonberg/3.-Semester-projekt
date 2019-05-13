@@ -7,5 +7,7 @@ import java.util.Optional;
 
 public interface INavBarRepo extends CrudRepository<NavigationBar, Long>
 {
+
     Optional<NavigationBar> findById (Long id);
+
 }
