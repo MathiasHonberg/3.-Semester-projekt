@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Kontakt {
+public class Contact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +18,16 @@ public class Kontakt {
     private String email;
     private String adresse;
 
-    public Kontakt()
+    public Contact(String firstName, String lastName, int phoneNumber, String email, String adresse)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.adresse = adresse;
+    }
+
+    public Contact()
     {
     }
 
@@ -85,7 +94,7 @@ public class Kontakt {
     @Override
     public String toString()
     {
-        return "Kontakt{" +
+        return "Contact{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

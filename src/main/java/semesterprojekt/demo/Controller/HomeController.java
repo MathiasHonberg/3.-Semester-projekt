@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import semesterprojekt.demo.Service.KontaktServiceImpl;
+import semesterprojekt.demo.Service.ContactServiceImpl;
 import semesterprojekt.demo.Service.NavigationBar.NavBarServiceImpl;
 import semesterprojekt.demo.Service.NewsServiceImpl;
 import java.sql.SQLException;
@@ -29,10 +29,10 @@ public class HomeController
     //RETURN STRINGS
     private final String REDIRECT = "redirect:/";
     private final String INDEX = "index";
-    private final String KONTAKT = "kontakt";
     private final String PRODUCTCATEGORIES = "productcategories";
     private final String PRODUCTS = "products";
     private final String PRODUCTINFO = "productinfo";
+    private final String CONTACT = "contact";
 
     @Autowired
     NewsServiceImpl newsServiceImpl;
@@ -47,7 +47,7 @@ public class HomeController
     NavBarServiceImpl navBarService;
 
     @Autowired
-    private KontaktServiceImpl kontaktService;
+    ContactServiceImpl contactService;
 
     @GetMapping("/")
     public String fetchNews(Model model) throws SQLException
@@ -62,6 +62,7 @@ public class HomeController
 
         return INDEX;
     }
+
 
     @GetMapping("/productcategories")
     public String productCategories(Model model)
@@ -110,15 +111,16 @@ public class HomeController
 
     }
 
-    @GetMapping("/kontakt")
+
+    @GetMapping("/contact")
     public String kontakt(Model model)
     {
-        log.info("KONTAKT action called...");
+        log.info("CONTACT action called...");
 
         model.addAttribute("navigationBar", navBarService.fetchAllNames());
-        model.addAttribute("kontakt", kontaktService.findAll());
+        model.addAttribute("contact", contactService.findAll());
 
-        return KONTAKT;
+        return CONTACT;
     }
 
 }

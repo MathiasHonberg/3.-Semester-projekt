@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-import semesterprojekt.demo.Model.Kontakt;
-import semesterprojekt.demo.Repo.IKontaktRepo;
+import semesterprojekt.demo.Model.Contact;
+import semesterprojekt.demo.Repo.IContactRepo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,19 +14,19 @@ import java.util.List;
 public class KontaktBootstrap implements ApplicationListener<ContextRefreshedEvent>
 {
     @Autowired
-    IKontaktRepo kontaktRepo;
+    IContactRepo kontaktRepo;
 
-    private List<Kontakt> createContact()
+    private List<Contact> createContact()
     {
-        List<Kontakt> kontakts = new ArrayList<>();
-        Kontakt kon = new Kontakt();
+        List<Contact> contacts = new ArrayList<>();
+        Contact kon = new Contact();
         kon.setFirstName("Kenneth");
         kon.setLastName("Kurland");
         kon.setPhoneNumber(53675310);
         kon.setEmail("k.kurland@me.com");
         kon.setAdresse("Vallerød Park 2a, 2960 Rungsted Kyst");
-        kontakts.add(kon);
-        return kontakts;
+        contacts.add(kon);
+        return contacts;
     }
 
     @Override

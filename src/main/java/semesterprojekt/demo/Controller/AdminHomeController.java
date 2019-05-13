@@ -6,9 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import semesterprojekt.demo.Model.Kontakt;
-import semesterprojekt.demo.Service.IKontaktService;
+
+import semesterprojekt.demo.Model.Contact;
+import semesterprojekt.demo.Model.NewsModel;
 import semesterprojekt.demo.Service.NewsServiceImpl;
+import java.sql.Blob;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import semesterprojekt.demo.Service.IContactService;
 
 @Log
 @Controller
@@ -16,10 +21,15 @@ public class AdminHomeController
 {
     private final String ADMIN_MENU = "/admin/adminmenu";
     private final String REDIRECT_ADMIN_MENU= "redirect:/adminmenu";
-    private final String ADMIN_KONTAKT = "/admin/adminkontakt";
+    private final String ADMIN_CONTACT = "/admin/admincontact";
+    private final String ADMIN_CONTACT_UPDATE = "/admin/adminupdatecontact";
+
+    Long tmpId;
+
+
 
     @Autowired
-    IKontaktService kontaktService;
+    IContactService contactService;
 
     @Autowired
     private NewsServiceImpl newsServiceImpl;
@@ -66,19 +76,46 @@ public class AdminHomeController
 
     }
 
-    @GetMapping("/adminkontakt")
-    public String adminkontakt()
-    {
+    @GetMapping("/admincontact")
+    public String adminkontakt(Model model)
 
-        log.info("ADMIN_KONTAKT action called...");
-        return ADMIN_KONTAKT;
+    {
+        model.addAttribute("contact", contactService.findAll());
+        log.info("ADMIN_CONTACT action called...");
+        return ADMIN_CONTACT;
     }
 
-    @PostMapping("/createkontakt")
-    public String createContact(Kontakt kontakt)
+    @PostMapping("/createcontact")
+    public String createContact(Contact contact)
     {
-        kontaktService.addKontakt(kontakt);
-        return ADMIN_KONTAKT;
+        contactService.addKontakt(contact);
+        return "redirect:/admincontact";
+    }
+    @GetMapping("/deletecontact/{id}")
+    public String deleteContact(@PathVariable("id") Long id)
+    {
+        contactService.deleteKontakt(id);
+
+        return "redirect:/admincontact";
+    }
+    @GetMapping("/updatecontact/{id}")
+    public String updateContact(@PathVariable("id") Long id, Model model)
+    {
+        tmpId = id;
+        Contact contact = contactService.findKontaktById(id);
+        System.out.println(contact);
+        model.addAttribute("contact", contact);
+        return ADMIN_CONTACT_UPDATE;
+    }
+
+    @PostMapping("/updatecontact")
+    public String updateContact(Contact k)
+    {
+        contactService.deleteKontakt(tmpId);
+        contactService.editKontakt(k);
+
+
+        return "redirect:/admincontact";
     }
 }
 
