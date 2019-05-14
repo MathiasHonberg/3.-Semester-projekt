@@ -55,7 +55,7 @@ public class ProductServiceImpl implements IProductService
             productModel.setProductFileName(imageFile.getOriginalFilename());
             productModel.setProductImage(encodedImage);
             iProductRepo.save(productModel);
-            System.out.println(productModel);
+//            System.out.println(productModel);
         }
         return null;
     }

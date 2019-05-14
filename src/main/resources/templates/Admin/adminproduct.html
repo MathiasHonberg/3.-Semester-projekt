@@ -35,7 +35,7 @@
 <div class="container">
     <h1 class="page-header">Create Product</h1>
 
-    <form class="md-form" th:action="@{/uploadproductimage}" enctype="multipart/form-data" method="POST">
+    <form class="md-form" th:action="@{/uploadproductimage}" enctype="multipart/form-data" method="POST" th:object="${ProductModel}">
         <div class="file-field">
             <div class="btn btn-primary btn-sm float-left">
                 <span>Choose Image (Max size 1MB)</span>
@@ -56,8 +56,13 @@
                 <p>Category:</p>
 
 
-                <select th:field="${product.productCategories.id}">
-                <option name="product" th:each="fetchAllCategories: ${fetchAllCategories}" value="${fetchAllCategories.id}">
+                <!--<select >-->
+                <!--<option th:each="fetchAllCategories: ${fetchAllCategories}" value="">-->
+                    <!--<span th:text="${fetchAllCategories.name}"></span>-->
+                <!--</option>-->
+                <!--</select>-->
+                <select th:field="${product.productCategories}">
+                <option name="pcid" th:each="fetchAllCategories: ${fetchAllCategories}" th:value="${fetchAllCategories.id}">
                     <span th:text="${fetchAllCategories.name}"></span>
                 </option>
                 </select>

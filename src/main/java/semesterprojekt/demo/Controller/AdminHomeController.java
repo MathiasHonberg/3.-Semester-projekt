@@ -99,7 +99,7 @@ public class AdminHomeController
     }
 
     @PostMapping("/uploadcategoryimage")
-    public String adminCategory(@RequestParam("fileName") MultipartFile imageFile, @ModelAttribute ProductCategories productCategories, Model model) throws Exception
+    public String adminCategory(@RequestParam("fileName") MultipartFile imageFile, @ModelAttribute ProductCategories productCategories) throws Exception
     {
 
 
@@ -145,11 +145,13 @@ public class AdminHomeController
     @PostMapping("/uploadproductimage")
     public String adminProduct(@RequestParam("fileName") MultipartFile imageFile, @ModelAttribute ProductModel productModel, Model model) throws Exception
     {
+//        ProductCategories productCategories = categoriesService.findProductCategory(pcid);
+//        productModel.setProductCategories(productCategories);
+
 
         if(!imageFile.isEmpty())
         {
             productService.saveProductImage(productModel, imageFile);
-            System.out.println(productModel);
         }
 
 

@@ -32,10 +32,12 @@ public class ProductModel
     @ManyToOne
     private ProductCategories productCategories;
 
-    public ProductModel() {
+    public ProductModel()
+    {
     }
 
-    public ProductModel(String name, double price, String shortDescription, String longDescription, String productImage, ProductCategories productCategories) {
+    public ProductModel(String name, double price, String shortDescription, String longDescription, String productImage, ProductCategories productCategories)
+    {
         this.name = name;
         this.price = price;
         this.shortDescription = shortDescription;
