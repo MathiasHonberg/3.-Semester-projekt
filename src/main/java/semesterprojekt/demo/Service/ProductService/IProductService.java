@@ -1,7 +1,10 @@
 package semesterprojekt.demo.Service.ProductService;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import semesterprojekt.demo.Model.ProductModel;
+
+import java.io.IOException;
 
 @Service
 public interface IProductService
@@ -14,7 +17,8 @@ public interface IProductService
 
     void deleteProduct(Long id);
 
-//    List<ProductModel> findProductsByCategories(Long id);
+    ProductModel saveProductImage(ProductModel productModel, MultipartFile file)throws IOException;
+
 
 
 }

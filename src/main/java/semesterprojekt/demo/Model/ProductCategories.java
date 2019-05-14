@@ -1,10 +1,9 @@
 package semesterprojekt.demo.Model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
+import org.hibernate.annotations.Type;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,19 +20,35 @@ public class ProductCategories
 
     private String name;
 
-    private String picture;
+    private String pcFileName;
+
+    @Type(type="text")
+    private String categoryImage;
 
     @OneToMany(cascade = CascadeType.ALL)
     private Set<ProductModel> productModels = new HashSet<>();
 
-    public ProductCategories()
-    {
+    public ProductCategories(String name, String productImage, Set<ProductModel> productModels) {
+        this.name = name;
+        this.categoryImage = productImage;
+        this.productModels = productModels;
+    }
+
+    public ProductCategories() {
 
     }
 
-    public ProductCategories(String name, String picture)
-    {
+    public ProductCategories(String name, Set<ProductModel> productModels) {
         this.name = name;
-        this.picture = picture;
+        this.productModels = productModels;
+    }
+
+    public ProductCategories(String name) {
+        this.name = name;
+    }
+
+    public ProductCategories(String name, String productImage) {
+        this.name = name;
+        this.categoryImage = productImage;
     }
 }
