@@ -46,13 +46,13 @@
         <div>
             <br><br><br><br>
             <label>Product name: </label>
-            <input type="text" class="form-control" size="40" th:field="${product.name}"/>
+            <input type="text" class="form-control" size="40" th:field="${product.name}" required/>
             <br>
             <label>Price: </label>
             <input type="number" class="form-control" size="20" th:field="${product.price}"/>
             <br>
             <label>Short Description: </label>
-            <input type="text" class="form-control" size="40" th:field="${product.shortDescription}"/>
+            <input type="text" class="form-control" size="40" th:field="${product.shortDescription}" required/>
             <br>
             <label>Long Description: </label>
             <textarea rows="4" class="form-control" cols="50" th:field="${product.longDescription}"/>
@@ -66,7 +66,7 @@
                     <!--<span th:text="${fetchAllCategories.name}"></span>-->
                 <!--</option>-->
                 <!--</select>-->
-                <select th:field="${product.productCategories}">
+                <select th:field="${product.productCategories}"required>
                 <option name="pcid"  th:each="fetchAllCategories: ${fetchAllCategories}" th:value="${fetchAllCategories.id}">
                     <span th:text="${fetchAllCategories.name}"></span>
                 </option>
@@ -95,7 +95,7 @@
             <th>Image</th>
             <th>Name</th>
             <th>Short Description</th>
-            <th></th>
+            <th>Delete</th>
 
         </tr>
         </thead>
@@ -108,12 +108,13 @@
             <td th:text="${fetchAllProducts.shortDescription}"></td>
             <td>
 
-                <a class="glyphicon glyphicon-trash" title="Delete" th:href="${'delete/specificproduct/' + fetchAllProducts.id}" onclick="return confirmDelete()">
+                <a class="glyphicon glyphicon-remove" title="Delete" th:href="${'delete/specificproduct/' + fetchAllProducts.id}" onclick="return confirmDelete()">
                     <!--<button class="btn btn-info glyphicon glyphicon-cog">details</button>-->
                 </a>
+                <!--
                 <a class="glyphicon glyphicon-cog" title="Edit">
-                    <!--<button class="btn btn-warning glyphicon glyphicon-pencil">edit</button>-->
-                </a>
+                     <button class="btn btn-warning glyphicon glyphicon-pencil">edit</button>
+                </a> -->
             </td>
         </tr>
 
@@ -156,7 +157,7 @@
     });
 
     function confirmDelete() {
-        if (confirm("Delete Image?") == true) {
+        if (confirm("Delete Product?") == true) {
             return true;
         } else {
             return false;

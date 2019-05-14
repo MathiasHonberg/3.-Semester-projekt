@@ -12,8 +12,8 @@ import javax.persistence.*;
 @ToString
 public class NewsModel
 {
-    @Id  //primaryKey
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //autoincrement
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String fileName;
