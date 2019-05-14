@@ -45,15 +45,20 @@
         </div>
         <div>
             <br><br><br><br>
-                <p>Product name: </p><input type="text" size="40" th:field="${product.name}"/>
-                <br>
-                <p>Price: </p><input type="number" size="20" th:field="${product.price}"/>
-                <br>
-                <p>Short Description: </p><input type="text" size="40" th:field="${product.shortDescription}"/>
-                <br>
-                <p>Long Description: </p><textarea rows="4" cols="50" th:field="${product.longDescription}"/>
-                <br>
-                <p>Category:</p>
+            <label>Product name: </label>
+            <input type="text" class="form-control" size="40" th:field="${product.name}"/>
+            <br>
+            <label>Price: </label>
+            <input type="number" class="form-control" size="20" th:field="${product.price}"/>
+            <br>
+            <label>Short Description: </label>
+            <input type="text" class="form-control" size="40" th:field="${product.shortDescription}"/>
+            <br>
+            <label>Long Description: </label>
+            <textarea rows="4" class="form-control" cols="50" th:field="${product.longDescription}"/>
+            <br>
+            <label>Category:</label>
+
 
 
                 <!--<select >-->
@@ -62,11 +67,11 @@
                 <!--</option>-->
                 <!--</select>-->
                 <select th:field="${product.productCategories}">
-                <option name="pcid" th:each="fetchAllCategories: ${fetchAllCategories}" th:value="${fetchAllCategories.id}">
+                <option name="pcid"  th:each="fetchAllCategories: ${fetchAllCategories}" th:value="${fetchAllCategories.id}">
                     <span th:text="${fetchAllCategories.name}"></span>
                 </option>
                 </select>
-            <br><br><br>
+            <br><br>
                 <button class="btn btn-primary" type="submit" id="i_submit">Submit</button>
             <div class="file-path-wrapper">
         </div>
