@@ -10,15 +10,9 @@ import semesterprojekt.demo.Service.NavigationBar.NavBarServiceImpl;
 import semesterprojekt.demo.Service.NewsServiceImpl;
 import java.sql.SQLException;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import semesterprojekt.demo.Model.NavigationBar;
 import semesterprojekt.demo.Model.ProductModel;
-import semesterprojekt.demo.Service.NavigationBar.NavBarServiceImpl;
-import semesterprojekt.demo.Service.NewsServiceImpl;
 import semesterprojekt.demo.Service.ProductService.CategoriesServiceImpl;
-import semesterprojekt.demo.Service.ProductService.ICategoriesService;
 import semesterprojekt.demo.Service.ProductService.ProductServiceImpl;
-import javax.jws.WebParam;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +20,6 @@ import java.util.List;
 @Controller
 public class HomeController
 {
-    //RETURN STRINGS
     private final String REDIRECT = "redirect:/";
     private final String INDEX = "index";
     private final String PRODUCTCATEGORIES = "productcategories";
@@ -35,19 +28,19 @@ public class HomeController
     private final String CONTACT = "contact";
 
     @Autowired
-    NewsServiceImpl newsServiceImpl;
+    private NewsServiceImpl newsServiceImpl;
 
     @Autowired
-    CategoriesServiceImpl categoriesService;
+    private CategoriesServiceImpl categoriesService;
 
     @Autowired
-    ProductServiceImpl productService;
+    private ProductServiceImpl productService;
 
     @Autowired
-    NavBarServiceImpl navBarService;
+    private NavBarServiceImpl navBarService;
 
     @Autowired
-    ContactServiceImpl contactService;
+    private ContactServiceImpl contactService;
 
     @GetMapping("/")
     public String fetchNews(Model model) throws SQLException
@@ -95,7 +88,6 @@ public class HomeController
         model.addAttribute("products", neededProducts);
         model.addAttribute("category", categoriesService.findProductCategory(id));
 
-
         return PRODUCTS;
     }
 
@@ -108,7 +100,6 @@ public class HomeController
         model.addAttribute("productinfo", productService.findProduct(id));
 
         return PRODUCTINFO;
-
     }
 
 
@@ -122,5 +113,4 @@ public class HomeController
 
         return CONTACT;
     }
-
 }

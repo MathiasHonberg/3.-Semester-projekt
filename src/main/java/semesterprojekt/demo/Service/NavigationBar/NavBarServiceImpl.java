@@ -19,7 +19,6 @@ public class NavBarServiceImpl implements INavBarService
     @Override
     public NavigationBar addNavigationName(NavigationBar navigationBar)
     {
-
         return navBarRepo.save(navigationBar);
     }
 
@@ -32,14 +31,12 @@ public class NavBarServiceImpl implements INavBarService
     @Override
     public Iterable<NavigationBar> fetchAllNames()
     {
-
         return navBarRepo.findAll();
     }
 
     @Override
     public Optional<NavigationBar> findNavigationName(Long id)
     {
-
         return navBarRepo.findById(id);
     }
 }

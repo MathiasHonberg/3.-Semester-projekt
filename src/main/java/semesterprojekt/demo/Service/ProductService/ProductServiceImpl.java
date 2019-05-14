@@ -9,8 +9,7 @@ import semesterprojekt.demo.Repo.ProductRepo.IProductRepo;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.Base64;
-import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class ProductServiceImpl implements IProductService
@@ -55,7 +54,6 @@ public class ProductServiceImpl implements IProductService
             productModel.setProductFileName(imageFile.getOriginalFilename());
             productModel.setProductImage(encodedImage);
             iProductRepo.save(productModel);
-//            System.out.println(productModel);
         }
         return null;
     }

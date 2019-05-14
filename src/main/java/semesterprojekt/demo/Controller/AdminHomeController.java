@@ -20,24 +20,19 @@ import semesterprojekt.demo.Service.ProductService.ProductServiceImpl;
 public class AdminHomeController
 {
     private final String ADMIN_MENU = "/admin/adminmenu";
-    private final String REDIRECT_ADMIN_MENU= "redirect:/adminmenu";
     private final String ADMIN_CONTACT = "/admin/admincontact";
     private final String ADMIN_CONTACT_UPDATE = "/admin/adminupdatecontact";
+    private final String ADMIN_CATEGORY = "/admin/admincategory";
+    private final String ADMIN_PRODUCT = "/admin/adminproduct";
+    private final String REDIRECT_ADMIN_CATEGORY = "redirect:/admincategory";
+    private final String REDIRECT_ADMIN_MENU= "redirect:/adminmenu";
+    private final String REDIRECT_ADMIN_PRODUCT = "redirect:/adminproduct";
+    private final String REDIRECT_ADMIN_CONTACT = "redirect:/admincontact";
 
     Long tmpId;
 
-
-
     @Autowired
     IContactService contactService;
-
-    //Category
-    private final String ADMIN_CATEGORY = "/admin/admincategory";
-    private final String REDIRECT_ADMIN_CATEGORY = "redirect:/admincategory";
-
-    //Product
-    private final String ADMIN_PRODUCT = "/admin/adminproduct";
-    private final String REDIRECT_ADMIN_PRODUCT = "redirect:/adminproduct";
 
     @Autowired
     private CategoriesServiceImpl categoriesService;
@@ -89,7 +84,6 @@ public class AdminHomeController
 
     }
 
-//ADMIN CATEGORY
     @GetMapping("/admincategory")
     public String adminCategory(Model model)
     {
@@ -103,7 +97,6 @@ public class AdminHomeController
     @PostMapping("/uploadcategoryimage")
     public String adminCategory(@RequestParam("fileName") MultipartFile imageFile, @ModelAttribute ProductCategories productCategories) throws Exception
     {
-
 
         if(!imageFile.isEmpty())
         {
@@ -128,15 +121,12 @@ public class AdminHomeController
         log.info("DELETE_SPECIFIC_CATEGORY action ended...");
 
         return REDIRECT_ADMIN_CATEGORY;
-
     }
 
-//ADMIN PRODUCT
 
     @GetMapping("/adminproduct")
     public String adminProduct(Model model)
     {
-
         model.addAttribute("fetchAllProducts", productService.fetchAllProducts());
         model.addAttribute("fetchAllCategories", categoriesService.fetchAllCategories());
         model.addAttribute("product", new ProductModel());
@@ -147,15 +137,10 @@ public class AdminHomeController
     @PostMapping("/uploadproductimage")
     public String adminProduct(@RequestParam("fileName") MultipartFile imageFile, @ModelAttribute ProductModel productModel, Model model) throws Exception
     {
-//        ProductCategories productCategories = categoriesService.findProductCategory(pcid);
-//        productModel.setProductCategories(productCategories);
-
-
         if(!imageFile.isEmpty())
         {
             productService.saveProductImage(productModel, imageFile);
         }
-
 
         return REDIRECT_ADMIN_PRODUCT;
     }
@@ -187,21 +172,21 @@ public class AdminHomeController
     @PostMapping("/createcontact")
     public String createContact(Contact contact)
     {
-        contactService.addKontakt(contact);
-        return "redirect:/admincontact";
+        contactService.addContact(contact);
+        return REDIRECT_ADMIN_CONTACT;
     }
     @GetMapping("/deletecontact/{id}")
     public String deleteContact(@PathVariable("id") Long id)
     {
-        contactService.deleteKontakt(id);
+        contactService.deleteContact(id);
 
-        return "redirect:/admincontact";
+        return REDIRECT_ADMIN_CONTACT;
     }
     @GetMapping("/updatecontact/{id}")
     public String updateContact(@PathVariable("id") Long id, Model model)
     {
         tmpId = id;
-        Contact contact = contactService.findKontaktById(id);
+        Contact contact = contactService.findContactById(id);
         System.out.println(contact);
         model.addAttribute("contact", contact);
         return ADMIN_CONTACT_UPDATE;
@@ -210,11 +195,10 @@ public class AdminHomeController
     @PostMapping("/updatecontact")
     public String updateContact(Contact k)
     {
-        contactService.deleteKontakt(tmpId);
-        contactService.editKontakt(k);
+        contactService.deleteContact(tmpId);
+        contactService.editContact(k);
 
-
-        return "redirect:/admincontact";
+        return REDIRECT_ADMIN_CONTACT;
     }
 }
 

@@ -6,9 +6,9 @@ import semesterprojekt.demo.Model.Contact;
 public interface IContactService {
 
     Iterable<Contact> findAll();
-    Contact findKontaktById(Long id);
-    Contact addKontakt (Contact k);
-    Contact editKontakt(Contact k);
-    void deleteKontakt(Long id);
+    Contact findContactById(Long id);
+    Contact addContact(Contact k);
+    Contact editContact(Contact k);
+    void deleteContact(Long id);
 
 }

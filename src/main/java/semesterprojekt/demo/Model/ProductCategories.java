@@ -4,12 +4,15 @@ import lombok.*;
 
 import javax.persistence.*;
 import org.hibernate.annotations.Type;
+import org.springframework.lang.Nullable;
+
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 @ToString
 public class ProductCategories
 {
@@ -25,17 +28,13 @@ public class ProductCategories
     @Type(type="text")
     private String categoryImage;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="productCategories")
     private Set<ProductModel> productModels = new HashSet<>();
 
     public ProductCategories(String name, String productImage, Set<ProductModel> productModels) {
         this.name = name;
         this.categoryImage = productImage;
         this.productModels = productModels;
-    }
-
-    public ProductCategories() {
-
     }
 
     public ProductCategories(String name, Set<ProductModel> productModels) {

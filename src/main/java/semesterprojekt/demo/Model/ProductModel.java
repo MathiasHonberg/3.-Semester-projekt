@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 @ToString
 public class ProductModel
 {
@@ -31,10 +32,6 @@ public class ProductModel
 
     @ManyToOne
     private ProductCategories productCategories;
-
-    public ProductModel()
-    {
-    }
 
     public ProductModel(String name, double price, String shortDescription, String longDescription, String productImage, ProductCategories productCategories)
     {

@@ -10,38 +10,35 @@ public class ContactServiceImpl implements IContactService
 {
 
     @Autowired
-    IContactRepo kontaktRepo;
+    IContactRepo iContactRepo;
 
     @Override
     public Iterable<Contact> findAll()
     {
-        return kontaktRepo.findAll();
+        return iContactRepo.findAll();
     }
 
     @Override
-    public Contact findKontaktById(Long id)
+    public Contact findContactById(Long id)
     {
-
-        return kontaktRepo.findAllById(id);
+        return iContactRepo.findAllById(id);
     }
 
     @Override
-    public Contact addKontakt(Contact k)
+    public Contact addContact(Contact contact)
     {
-        return kontaktRepo.save(k);
+        return iContactRepo.save(contact);
     }
 
     @Override
-    public Contact editKontakt(Contact k)
+    public Contact editContact(Contact contact)
     {
-
-        return kontaktRepo.save(k);
+        return iContactRepo.save(contact);
     }
 
     @Override
-    public void deleteKontakt(Long id)
+    public void deleteContact(Long id)
     {
-
-        kontaktRepo.deleteById(id);
+        iContactRepo.deleteById(id);
     }
 }

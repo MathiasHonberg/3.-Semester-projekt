@@ -8,7 +8,6 @@ import java.util.Optional;
 @Service
 public interface INavBarService
 {
-
     NavigationBar addNavigationName(NavigationBar navigationBar);
 
     Optional<NavigationBar> findNavigationName(Long id);
@@ -16,6 +15,4 @@ public interface INavBarService
     Iterable<NavigationBar> fetchAllNames();
 
     void deleteNavigationName(Long id);
-
-
 }

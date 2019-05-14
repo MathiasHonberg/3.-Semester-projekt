@@ -19,6 +19,4 @@ public interface ICategoriesService
     void deleteProductCategory(Long id);
 
     ProductCategories savePCImage(ProductCategories productCategories ,MultipartFile file)throws IOException;
-
-
 }

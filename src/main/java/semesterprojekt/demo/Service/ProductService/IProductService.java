@@ -19,6 +19,4 @@ public interface IProductService
 
     ProductModel saveProductImage(ProductModel productModel, MultipartFile file)throws IOException;
 
-
-
 }
