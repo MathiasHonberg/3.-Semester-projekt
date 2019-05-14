@@ -2,6 +2,7 @@ package semesterprojekt.demo.Controller;
 
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Log
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AdminLoginController
 {
     private final String ADMIN_LOGIN = "/admin/adminlogin";
-    private final String ADMIN_LOGIN_ERROR = "/admin/loginerror";
 
     @GetMapping("/adminlogin")
     public String adminLogin()
@@ -19,11 +19,13 @@ public class AdminLoginController
         return ADMIN_LOGIN;
     }
 
-    @GetMapping("/loginerror")
-    public String loginError()
+    @GetMapping("/login-error")
+    public String loginError(Model model)
     {
         log.info("ADMIN_LOGIN_ERROR action called...");
 
-        return ADMIN_LOGIN_ERROR;
+        model.addAttribute("loginError", true);
+
+        return ADMIN_LOGIN;
     }
 }
