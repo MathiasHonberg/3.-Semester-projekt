@@ -4,8 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import org.hibernate.annotations.Type;
-import org.springframework.lang.Nullable;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +14,6 @@ import java.util.Set;
 @ToString
 public class ProductCategories
 {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
