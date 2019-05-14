@@ -26,6 +26,9 @@ public class AdminLoginController
 
         model.addAttribute("loginError", true);
 
+        log.info("ADMIN_LOGIN_ERROR action ended...");
+
+
         return ADMIN_LOGIN;
     }
 }
