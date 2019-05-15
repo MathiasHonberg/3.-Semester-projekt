@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import semesterprojekt.demo.Model.Contact;
 import semesterprojekt.demo.Repo.IContactRepo;
 
+import javax.transaction.Transactional;
+
 @Service
 public class ContactServiceImpl implements IContactService
 {
@@ -34,6 +36,20 @@ public class ContactServiceImpl implements IContactService
     public Contact editContact(Contact contact)
     {
         return iContactRepo.save(contact);
+    }
+
+    @Transactional
+    @Override
+    public void updateContact(Contact contact) {
+
+         Long id = contact.getId();
+         String firstName = contact.getFirstName();
+         String lastName = contact.getLastName();
+         int phoneNumber = contact.getPhoneNumber();
+         String email = contact.getEmail();
+         String adresse = contact.getAdresse();
+
+        iContactRepo.updateContactInfoById(firstName,lastName,phoneNumber,email,adresse,id);
     }
 
     @Override

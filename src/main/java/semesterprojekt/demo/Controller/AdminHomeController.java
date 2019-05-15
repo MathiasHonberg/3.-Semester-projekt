@@ -195,8 +195,13 @@ public class AdminHomeController
     @PostMapping("/updatecontact")
     public String updateContact(Contact k)
     {
-        contactService.deleteContact(tmpId);
-        contactService.editContact(k);
+        log.info("UPDATE_CONTACT action called...");
+
+        //contactService.deleteContact(tmpId);
+        //contactService.editContact(k);
+        contactService.updateContact(k);
+        log.info("UPDATE_CONTACT action ended...");
+
 
         return REDIRECT_ADMIN_CONTACT;
     }

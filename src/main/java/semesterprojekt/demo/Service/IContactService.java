@@ -9,6 +9,7 @@ public interface IContactService {
     Contact findContactById(Long id);
     Contact addContact(Contact k);
     Contact editContact(Contact k);
+    void updateContact(Contact contact);
     void deleteContact(Long id);
 
 }

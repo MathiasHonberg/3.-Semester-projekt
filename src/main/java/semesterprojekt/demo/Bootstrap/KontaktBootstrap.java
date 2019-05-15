@@ -18,6 +18,7 @@ public class KontaktBootstrap implements ApplicationListener<ContextRefreshedEve
 
     private List<Contact> createContact()
     {
+
         List<Contact> contacts = new ArrayList<>();
         Contact kon = new Contact();
         kon.setFirstName("Kenneth");
