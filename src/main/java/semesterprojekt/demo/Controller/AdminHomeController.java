@@ -41,7 +41,7 @@ public class AdminHomeController
     String tmpImg;
 
     @Autowired
-    IContactService contactService;
+    private IContactService contactService;
 
     @Autowired
     private CategoriesServiceImpl categoriesService;
@@ -193,18 +193,18 @@ public class AdminHomeController
     @PostMapping("/updateproduct")
     public String updateProduct(@RequestParam("fileName") MultipartFile imageFile, @ModelAttribute ProductModel productModel) throws Exception
     {
-
+        if (productModel != null)
+        {
             productService.deleteProduct(tempPId);
             productModel.setProductImage(tmpImg);
             productService.saveProductImage(productModel, imageFile);
+        }
 
 
         return "redirect:/adminproduct";
     }
-
-
-//ADMIN CONTACT
-@GetMapping("/updatecontact/{id}")
+    
+    @GetMapping("/updatecontact/{id}")
     public String updateContact(@PathVariable("id") Long id, Model model)
     {
         tmpId = id;

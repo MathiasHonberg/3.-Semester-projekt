@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import semesterprojekt.demo.Model.Contact;
 import semesterprojekt.demo.Repo.IContactRepo;
 
-import javax.transaction.Transactional;
 
 @Service
 public class ContactServiceImpl implements IContactService
