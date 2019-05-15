@@ -10,7 +10,19 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
     html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
+    .forsideheading:before, .forsideheading:after {
+        background-color: #808285;
+        content: "";
+        display: inline-block;
+        height: 1px;
+        position: relative;
+        vertical-align: middle;
+        width: 40%;
+    }
+    .forsideheading:before{
+        margin-left: 55px;
 
+    }
 </style>
 
 <body>
@@ -30,7 +42,12 @@
 <!-- Content -->
 <div class="container">
 <div class="w3-container w3-padding-32" id="productCategories">
-    <h2 class="w3-border-bottom w3-border-light-grey w3-padding-16">Categories</h2>
+    <div class="content cms-paragraph">
+        <h2 class="forsideheading">
+            Categories
+        </h2>
+    </div>
+    <h2 class="w3-border-bottom w3-border-light-grey w3-padding-16"></h2>
 </div>
 
 <div th:each = "productCategories : ${productCategories}" style="margin-left: 40px">
