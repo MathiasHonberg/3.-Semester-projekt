@@ -38,7 +38,6 @@ public class ContactServiceImpl implements IContactService
         return iContactRepo.save(contact);
     }
 
-    @Transactional
     @Override
     public void updateContact(Contact contact) {
 

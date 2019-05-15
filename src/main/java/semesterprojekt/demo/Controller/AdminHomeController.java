@@ -197,9 +197,9 @@ public class AdminHomeController
     {
         log.info("UPDATE_CONTACT action called...");
 
-        //contactService.deleteContact(tmpId);
-        //contactService.editContact(k);
+        k.setId(tmpId);
         contactService.updateContact(k);
+
         log.info("UPDATE_CONTACT action ended...");
 
 
