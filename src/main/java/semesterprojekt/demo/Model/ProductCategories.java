@@ -25,7 +25,8 @@ public class ProductCategories
     @Type(type="text")
     private String categoryImage;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="productCategories")
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productCategories")
     private Set<ProductModel> productModels = new HashSet<>();
 
     public ProductCategories(String name, String productImage, Set<ProductModel> productModels) {

@@ -1,12 +1,16 @@
 package semesterprojekt.demo.Controller;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartFile;
 import semesterprojekt.demo.Model.Contact;
+import semesterprojekt.demo.Model.NavigationBar;
+import semesterprojekt.demo.Service.NavigationBar.NavBarServiceImpl;
 import semesterprojekt.demo.Service.NewsServiceImpl;
 import org.springframework.web.bind.annotation.PostMapping;
 import semesterprojekt.demo.Service.IContactService;
@@ -14,6 +18,9 @@ import semesterprojekt.demo.Model.ProductCategories;
 import semesterprojekt.demo.Model.ProductModel;
 import semesterprojekt.demo.Service.ProductService.CategoriesServiceImpl;
 import semesterprojekt.demo.Service.ProductService.ProductServiceImpl;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 @Log
 @Controller
@@ -24,12 +31,16 @@ public class AdminHomeController
     private final String ADMIN_CONTACT_UPDATE = "/admin/adminupdatecontact";
     private final String ADMIN_CATEGORY = "/admin/admincategory";
     private final String ADMIN_PRODUCT = "/admin/adminproduct";
+    private final String ADMIN_PRODUCT_UPDATE = "/admin/adminupdateproduct";
+    private final String ADMIN_NAVIGATION_BAR = "/admin/adminnavigationbar";
     private final String REDIRECT_ADMIN_CATEGORY = "redirect:/admincategory";
     private final String REDIRECT_ADMIN_MENU= "redirect:/adminmenu";
     private final String REDIRECT_ADMIN_PRODUCT = "redirect:/adminproduct";
     private final String REDIRECT_ADMIN_CONTACT = "redirect:/admincontact";
 
     Long tmpId;
+    Long tempPId;
+    String tmpImg;
 
     @Autowired
     IContactService contactService;
@@ -42,6 +53,9 @@ public class AdminHomeController
 
     @Autowired
     private ProductServiceImpl productService;
+
+    @Autowired
+    private NavBarServiceImpl navBarService;
 
     @GetMapping("/adminmenu")
     public String adminMenu(Model model)
@@ -135,8 +149,9 @@ public class AdminHomeController
     }
 
     @PostMapping("/uploadproductimage")
-    public String adminProduct(@RequestParam("fileName") MultipartFile imageFile, @ModelAttribute ProductModel productModel, Model model) throws Exception
+    public String adminProduct(@RequestParam("fileName") MultipartFile imageFile, @ModelAttribute ProductModel productModel) throws Exception
     {
+
         if(!imageFile.isEmpty())
         {
             productService.saveProductImage(productModel, imageFile);
@@ -161,6 +176,56 @@ public class AdminHomeController
         return REDIRECT_ADMIN_PRODUCT;
 
     }
+
+    @GetMapping("/updateproduct/{id}")
+    public String updateProduct(@PathVariable("id") Long id, Model model)
+    {
+        tempPId = id;
+        tmpImg = productService.findProduct(id).getProductImage();
+        ProductModel productModel = productService.findProduct(id);
+
+        model.addAttribute("fetchAllCategories", categoriesService.fetchAllCategories());
+        model.addAttribute("oldProduct", productModel);
+        model.addAttribute("product", new ProductModel());
+
+
+        return ADMIN_PRODUCT_UPDATE;
+    }
+
+    @PostMapping("/updateproduct")
+    public String updateProduct(@RequestParam("fileName") MultipartFile imageFile, @ModelAttribute ProductModel productModel) throws Exception
+    {
+
+            productService.deleteProduct(tempPId);
+            productModel.setProductImage(tmpImg);
+            productService.saveProductImage(productModel, imageFile);
+
+
+        return "redirect:/adminproduct";
+    }
+
+
+//ADMIN CONTACT
+@GetMapping("/updatecontact/{id}")
+    public String updateContact(@PathVariable("id") Long id, Model model)
+    {
+        tmpId = id;
+        Contact contact = contactService.findContactById(id);
+        System.out.println(contact);
+        model.addAttribute("contact", contact);
+        return ADMIN_CONTACT_UPDATE;
+    }
+
+    @PostMapping("/updatecontact")
+    public String updateContact(Contact k)
+    {
+        contactService.deleteContact(tmpId);
+        contactService.editContact(k);
+
+
+        return "redirect:/admincontact";
+    }
+
     @GetMapping("/admincontact")
     public String adminContact(Model model)
     {
@@ -182,29 +247,37 @@ public class AdminHomeController
 
         return REDIRECT_ADMIN_CONTACT;
     }
-    @GetMapping("/updatecontact/{id}")
-    public String updateContact(@PathVariable("id") Long id, Model model)
+
+
+
+//ADMIN NAVIGATION BAR
+    @GetMapping("/adminnavigationbar")
+    public String adminNavigationBar(Model model)
     {
-        tmpId = id;
-        Contact contact = contactService.findContactById(id);
-        System.out.println(contact);
-        model.addAttribute("contact", contact);
-        return ADMIN_CONTACT_UPDATE;
+        model.addAttribute("navigationBar", navBarService.fetchAllNames());
+
+        return ADMIN_NAVIGATION_BAR;
     }
 
-    @PostMapping("/updatecontact")
-    public String updateContact(Contact k)
-    {
-        log.info("UPDATE_CONTACT action called...");
+//    @GetMapping("/updatenavbar/{id}")
+//    public String updateNavBar(@PathVariable("id") Long id, Model model)
+//    {
+//        tempNBId = id;
+//        NavigationBar navigationBar = navBarService.findNavigationName(id);
+//        model.addAttribute("navbar", navigationBar);
+//        return ADMIN_CONTACT_UPDATE;
+//    }
+//
+//    @PostMapping("/updatecontact")
+//    public String updateNavBar(NavigationBar nb)
+//    {
+//        navBarService.deleteNavigationName(tempNBId);
+//        navBarService.editNavBar(nb);
+//
+//
+//        return "redirect:/admincontact";
+//    }
 
-        //contactService.deleteContact(tmpId);
-        //contactService.editContact(k);
-        contactService.updateContact(k);
-        log.info("UPDATE_CONTACT action ended...");
-
-
-        return REDIRECT_ADMIN_CONTACT;
-    }
 }
 
 

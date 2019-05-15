@@ -42,6 +42,13 @@ public class ProductServiceImpl implements IProductService
         iProductRepo.deleteById(id);
     }
 
+    @Override
+    public ProductModel editProduct(ProductModel productModel)
+    {
+
+        return iProductRepo.save(productModel);
+    }
+
     @Transactional
     public ProductModel saveProductImage(ProductModel productModel, MultipartFile imageFile)throws IOException
     {

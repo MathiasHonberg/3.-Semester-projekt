@@ -107,7 +107,6 @@ public class HomeController
     public String kontakt(Model model)
     {
         log.info("CONTACT action called...");
-
         model.addAttribute("navigationBar", navBarService.fetchAllNames());
         model.addAttribute("contact", contactService.findAll());
 

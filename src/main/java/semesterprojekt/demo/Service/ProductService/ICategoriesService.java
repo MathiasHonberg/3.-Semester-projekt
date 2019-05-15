@@ -11,12 +11,8 @@ import java.util.Optional;
 public interface ICategoriesService
 {
     ProductCategories addProductCategory(ProductCategories productCategories);
-
     ProductCategories findProductCategory(Long id);
-
     Iterable<ProductCategories> fetchAllCategories();
-
     void deleteProductCategory(Long id);
-
     ProductCategories savePCImage(ProductCategories productCategories ,MultipartFile file)throws IOException;
 }
