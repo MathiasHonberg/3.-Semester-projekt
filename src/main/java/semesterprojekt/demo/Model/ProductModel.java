@@ -2,6 +2,7 @@ package semesterprojekt.demo.Model;
 
 import lombok.*;
 import org.hibernate.annotations.Type;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 

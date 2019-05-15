@@ -10,13 +10,10 @@ import java.io.IOException;
 public interface IProductService
 {
     ProductModel addProduct(ProductModel productModel);
-
     ProductModel findProduct(Long id);
-
     Iterable<ProductModel> fetchAllProducts();
-
     void deleteProduct(Long id);
-
     ProductModel saveProductImage(ProductModel productModel, MultipartFile file)throws IOException;
+    ProductModel editProduct(ProductModel productModel);
 
 }
