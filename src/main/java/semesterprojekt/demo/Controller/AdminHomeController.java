@@ -195,9 +195,8 @@ public class AdminHomeController
     {
         if (productModel != null)
         {
-            productService.deleteProduct(tempPId);
-            productModel.setProductImage(tmpImg);
-            productService.saveProductImage(productModel, imageFile);
+            productModel.setId(tempPId);
+            productService.editProduct(productModel);
         }
 
 

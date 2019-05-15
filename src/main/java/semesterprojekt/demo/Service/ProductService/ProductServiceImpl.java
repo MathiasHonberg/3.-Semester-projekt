@@ -43,10 +43,18 @@ public class ProductServiceImpl implements IProductService
     }
 
     @Override
-    public ProductModel editProduct(ProductModel productModel)
+    public void editProduct(ProductModel productModel)
     {
+        Long id = productModel.getId();
+        String name = productModel.getName();
+        double price = productModel.getPrice();
+        String shortDescription = productModel.getShortDescription();
+        String longDescription = productModel.getLongDescription();
+        String productFileName = productModel.getProductFileName();
+        String productImage = productModel.getProductImage();
 
-        return iProductRepo.save(productModel);
+        iProductRepo.updateProductInfoById(name, price, shortDescription, longDescription, productFileName, productImage, id);
+
     }
 
     @Transactional
