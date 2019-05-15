@@ -211,10 +211,10 @@ public class AdminHomeController
     @PostMapping("/updateproduct")
     public String updateProduct(@RequestParam("fileName") MultipartFile imageFile, @ModelAttribute ProductModel productModel) throws Exception
     {
-        productService.deleteProduct(tempPId);
 
         if(!imageFile.isEmpty())
         {
+            productService.deleteProduct(tempPId);
             productService.saveProductImage(productModel, imageFile);
         }
 
