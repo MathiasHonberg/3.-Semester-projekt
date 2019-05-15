@@ -47,13 +47,13 @@
         <div>
             <br><br><br><br>
             <p>Product name: </p><input type="text" size="40" th:value="${oldProduct.name}" name="name" required/>
-            <br>
+            <br><br>
             <p>Price: </p><input type="number" size="10" th:value="${oldProduct.price}" name="price" required/>
-            <br>
+            <br><br>
             <p>Short Description: </p><input type="text" size="40" th:value="${oldProduct.shortDescription}" name="shortDescription" required/>
-            <br>
-            <p>Long Description: </p><input size="100" height="100" type="text" th:value="${oldProduct.longDescription}" name="longDescription" required/>
-            <br>
+            <br><br>
+            <p>Long Description: </p><textarea rows="4" cols="50" th:text="${oldProduct.longDescription}" name="longDescription" required></textarea>
+            <br><br>
             <p>Category:</p>
 
 
