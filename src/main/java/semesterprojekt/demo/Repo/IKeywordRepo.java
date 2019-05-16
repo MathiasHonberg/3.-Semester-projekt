@@ -14,9 +14,9 @@ public interface IKeywordRepo extends CrudRepository<Keyword, Long> {
 
     @Modifying(clearAutomatically=true)
     @Transactional
-    @Query("UPDATE NavigationBar n SET " +
-            "n.name=:name " +
-            "WHERE n.id =:id")
+    @Query("UPDATE Keyword k SET " +
+            "k.name=:name " +
+            "WHERE k.id =:id")
     void UpdateKeywordById(
             @Param("name") String name,
             @Param("id") Long id);
