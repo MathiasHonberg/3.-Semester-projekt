@@ -37,6 +37,8 @@ public class AdminHomeController
     private final String REDIRECT_ADMIN_PRODUCT = "redirect:/adminproduct";
     private final String REDIRECT_ADMIN_CONTACT = "redirect:/admincontact";
     private final String REDIRECT_ADMIN_NAVBAR = "redirect:/adminnavigationbar";
+    private final String ADMIN_KEYWORD = "/admin/adminkeyword";
+
     Long tmpId;
     Long tempPId;
     Long tempNBId;
@@ -288,6 +290,14 @@ public class AdminHomeController
 
 
         return REDIRECT_ADMIN_NAVBAR;
+    }
+
+    @GetMapping("/adminkeyword")
+    public String adminKeyword(Model model)
+    {
+
+
+        return ADMIN_KEYWORD;
     }
 
 }
