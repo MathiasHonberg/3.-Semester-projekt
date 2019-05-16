@@ -3,6 +3,7 @@ package semesterprojekt.demo.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import semesterprojekt.demo.Model.ProductCategories;
 import semesterprojekt.demo.Model.ProductModel;
 import semesterprojekt.demo.Repo.ProductRepo.IProductRepo;
 
@@ -52,25 +53,43 @@ public class ProductServiceImpl implements IProductService
         String longDescription = productModel.getLongDescription();
         String productFileName = productModel.getProductFileName();
         String productImage = productModel.getProductImage();
+        ProductCategories pc = productModel.getProductCategories();
 
-        iProductRepo.updateProductInfoById(name, price, shortDescription, longDescription, productFileName, productImage, id);
+        iProductRepo.updateProductInfoById(name, price, shortDescription, longDescription, productFileName, productImage, pc, id);
 
     }
 
     @Transactional
     public ProductModel saveProductImage(ProductModel productModel, MultipartFile imageFile)throws IOException
     {
-        //Converting imageFile into String
         if(!imageFile.isEmpty())
         {
-            byte [] byteArr = imageFile.getBytes();
-            Base64.Encoder encoder = Base64.getEncoder();
-            String encodedImage = "data:image/png;base64," + encoder.encodeToString(byteArr);
+            saveImages(productModel, imageFile);
+            editProduct(productModel);
+        }
+        return null;
+    }
 
-            productModel.setProductFileName(imageFile.getOriginalFilename());
-            productModel.setProductImage(encodedImage);
+    @Transactional
+    public ProductModel saveNewProduct(ProductModel productModel, MultipartFile imageFile)throws IOException
+    {
+        if(!imageFile.isEmpty())
+        {
+            saveImages(productModel, imageFile);
             iProductRepo.save(productModel);
         }
         return null;
+    }
+
+
+    private void saveImages(ProductModel productModel, MultipartFile imageFile) throws IOException {
+
+        //Converting imageFile into String
+        byte [] byteArr = imageFile.getBytes();
+        Base64.Encoder encoder = Base64.getEncoder();
+        String encodedImage = "data:image/png;base64," + encoder.encodeToString(byteArr);
+
+        productModel.setProductFileName(imageFile.getOriginalFilename());
+        productModel.setProductImage(encodedImage);
     }
 }

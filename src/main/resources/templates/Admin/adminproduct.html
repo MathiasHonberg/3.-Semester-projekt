@@ -27,6 +27,7 @@
         <a href="/adminproduct" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Produkt</a>
         <a href="/admincontact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Kontakt</a>
         <a href="/adminnavigationbar" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Navigations bar</a>
+        <a href="/adminkeyword" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Keywords</a>
         <a href="/logout" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-power-off" style="font-size: 18px; color: white;"></i></a>
     </div>
 </div>
@@ -65,7 +66,7 @@
                     <!--<span th:text="${fetchAllCategories.name}"></span>-->
                 <!--</option>-->
                 <!--</select>-->
-                <select th:field="${product.productCategories}"required>
+                <select th:field="${product.productCategories}" required>
                 <option name="pcid"  th:each="fetchAllCategories: ${fetchAllCategories}" th:value="${fetchAllCategories.id}">
                     <span th:text="${fetchAllCategories.name}"></span>
                 </option>
@@ -78,9 +79,6 @@
 
             </div>
     </form>
-    <br>
-    <br>
-    <br>
     <br>
     <br>
 
