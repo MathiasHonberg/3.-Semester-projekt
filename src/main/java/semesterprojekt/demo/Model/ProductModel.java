@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
 public class ProductModel
 {
 
@@ -31,7 +30,7 @@ public class ProductModel
     @Type(type="text")
     private String productImage;
 
-    @ManyToOne
+    @ManyToOne()
     private ProductCategories productCategories;
 
     public ProductModel(String name, double price, String shortDescription, String longDescription, String productImage, ProductCategories productCategories)
@@ -42,5 +41,12 @@ public class ProductModel
         this.longDescription = longDescription;
         this.productImage = productImage;
         this.productCategories = productCategories;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductModel{" +
+                " productCategories=" + productCategories +
+                '}';
     }
 }

@@ -33,7 +33,7 @@ public class KontaktBootstrap implements ApplicationListener<ContextRefreshedEve
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent)
     {
-        System.out.println("context refreshed");
+        System.out.println("KONTAKT_BOOTSTRAP context refreshed");
         kontaktRepo.saveAll(createContact());
 
     }

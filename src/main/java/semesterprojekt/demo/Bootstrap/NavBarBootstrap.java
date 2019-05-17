@@ -53,7 +53,7 @@ public class NavBarBootstrap implements ApplicationListener<ContextRefreshedEven
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent)
     {
-        System.out.println("context refreshed");
+        System.out.println("NAVIGATION_BAR_BOOTSTRAP context refreshed");
         navBarRepo.saveAll(createNavigationBar());
 
     }

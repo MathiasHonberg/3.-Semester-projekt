@@ -46,26 +46,26 @@
     <br>
     <div class="content cms-paragraph">
         <h2 class="forsideheading">
-            Products
+            <span th:text="${navigationBar[1].name}"></span>
         </h2>
     </div>
     <br>
-<!-- First Photo Grid-->
-<div class="w3-row-padding" style="max-width:1300px">
-    <div th:each = "products : ${products}" style=" margin-left: 35px">
-        <div class="w3-quarter w3-container w3-margin-bottom">
-            <a th:href="${'/productinfo/' + products.id}">
-            <img th:src="${products.productImage}" alt="TobiasNK" style="width:100%">
-            </a>
-                <div class="w3-container" style="background-color: whitesmoke; border-top: 5px solid;
-                 border-top-width: 5px !important; border-top-color: darkgrey !important;">
-                    <p><b><span th:text="${products.name}" style="font-size: x-large"></span></b></p>
-                    <p><span th:text="${products.shortDescription}" style="font-size: large"></span></p>
-                    <p><span th:text="${products.price} + ' kr.'" style="font-size: small"></span></p>
-                </div>
+    <!-- First Photo Grid-->
+    <div class="w3-row-padding" style="max-width:1300px">
+        <div th:each = "products : ${products}" style=" margin-left: 35px">
+            <div class="w3-quarter w3-container w3-margin-bottom">
+                <a th:href="${'/productinfo/' + products.id}">
+                <img th:src="${products.productImage}" alt="TobiasNK" style="width:100%">
+                </a>
+                    <div class="w3-container" style="background-color: whitesmoke; border-top: 5px solid;
+                     border-top-width: 5px !important; border-top-color: darkgrey !important;">
+                        <p><b><span th:text="${products.name}" style="font-size: x-large"></span></b></p>
+                        <p><span th:text="${products.shortDescription}" style="font-size: large"></span></p>
+                        <p><span th:text="${products.price} + ' kr.'" style="font-size: small"></span></p>
+                    </div>
+            </div>
         </div>
     </div>
-</div>
 </div>
 
 <br><br><br><br><br>

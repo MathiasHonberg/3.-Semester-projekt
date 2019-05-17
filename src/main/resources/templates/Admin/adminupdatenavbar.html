@@ -18,8 +18,8 @@
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
         <a href="/adminmenu" class="w3-bar-item w3-button w3-padding-large">Admin Menu</a>
-        <a href="/admincategory" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Category</a>
-        <a href="/adminproduct" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Product</a>
+        <a href="/admincategory" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Kategori</a>
+        <a href="/adminproduct" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Produkt</a>
         <a href="/admincontact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Kontakt</a>
         <a href="/adminabout" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin About</a>
         <a href="/adminnavigationbar" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Navigations bar</a>
@@ -34,7 +34,7 @@
             <form method="post" action="/updatenavbar/">
                 <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                     <div style="margin:0 0px 8px 0px">
-                        <input class="w3-input w3-border" type="text" th:value="${navbar.name}" th:field="${navbar.name}">
+                        <input class="w3-input w3-border" type="text" th:value="${navbar.name}" name="name">
                     </div>
                 </div>
                 <input type="submit" value="Opdater">
