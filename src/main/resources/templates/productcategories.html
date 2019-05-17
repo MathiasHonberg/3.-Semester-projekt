@@ -41,39 +41,39 @@
 
 <!-- Content -->
 <div class="container">
-<div class="w3-container w3-padding-32" id="productCategories">
-    <div class="content cms-paragraph">
-        <h2 class="forsideheading">
-            Kategorier
-        </h2>
+    <div class="w3-container w3-padding-32" id="productCategories">
+        <div class="content cms-paragraph">
+            <h2 class="forsideheading">
+                <span>Kategorier</span>
+            </h2>
+        </div>
+        <h2 class="w3-border-bottom w3-border-light-grey w3-padding-16"></h2>
     </div>
-    <h2 class="w3-border-bottom w3-border-light-grey w3-padding-16"></h2>
-</div>
 
-<div th:each = "productCategories : ${productCategories}" style="margin-left: 40px">
-    <div class="w3-col l3 m6 w3-margin-bottom">
-        <div class="w3-display-container">
-            <a th:href="${'products/' + productCategories.id}">
-            <div class="w3-display-topleft w3-black w3-padding" th:text = "${productCategories.name}"></div>
-                <img th:src="${productCategories.categoryImage}" alt="Kitchen" style="width:80%">
-            </a>
+    <div th:each = "productCategories : ${productCategories}" style="margin-left: 40px">
+        <div class="w3-col l3 m6 w3-margin-bottom">
+            <div class="w3-display-container">
+                <a th:href="${'products/' + productCategories.id}">
+                <div class="w3-display-topleft w3-black w3-padding" th:text = "${productCategories.name}"></div>
+                    <img th:src="${productCategories.categoryImage}" alt="Kitchen" style="width:80%">
+                </a>
+            </div>
         </div>
     </div>
-</div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<footer id="footer" class="w3-container w3-padding-32 w3-light-grey w3-center">
-    <h4>Footer</h4>
-    <a href="#" class="w3-button w3-black w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
-    <div class="w3-xlarge w3-section">
-        <i class="fa fa-facebook-official w3-hover-opacity"></i>
-        <i class="fa fa-instagram w3-hover-opacity"></i>
-        <i class="fa fa-snapchat w3-hover-opacity"></i>
-        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-        <i class="fa fa-twitter w3-hover-opacity"></i>
-        <i class="fa fa-linkedin w3-hover-opacity"></i>
-    </div>
-    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">The A-Team</a></p>
-</footer>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <footer id="footer" class="w3-container w3-padding-32 w3-light-grey w3-center">
+        <h4>Footer</h4>
+        <a href="#" class="w3-button w3-black w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+        <div class="w3-xlarge w3-section">
+            <i class="fa fa-facebook-official w3-hover-opacity"></i>
+            <i class="fa fa-instagram w3-hover-opacity"></i>
+            <i class="fa fa-snapchat w3-hover-opacity"></i>
+            <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+            <i class="fa fa-twitter w3-hover-opacity"></i>
+            <i class="fa fa-linkedin w3-hover-opacity"></i>
+        </div>
+        <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">The A-Team</a></p>
+    </footer>
 </div>
 </body>
 

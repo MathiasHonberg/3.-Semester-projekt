@@ -292,16 +292,4 @@ public class AdminHomeController
         return REDIRECT_ADMIN_NAVBAR;
     }
 
-    @GetMapping("/adminkeyword")
-    public String adminKeyword(Model model)
-    {
-
-
-        return ADMIN_KEYWORD;
-    }
-
 }
-
-
-
-
