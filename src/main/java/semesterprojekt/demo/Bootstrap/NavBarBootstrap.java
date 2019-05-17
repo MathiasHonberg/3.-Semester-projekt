@@ -32,6 +32,7 @@ public class NavBarBootstrap implements ApplicationListener<ContextRefreshedEven
         NavigationBar omKurland = new NavigationBar("Kontakt", "/contact");
         NavigationBar ledigeJobs = new NavigationBar("Ledige Jobs", "/contact");
         NavigationBar indkøbskurv = new NavigationBar("Indkøbskurv", "/contact");
+        NavigationBar about = new NavigationBar("About", "/about");
 
 
         navigationBarList.add(home);
@@ -42,6 +43,7 @@ public class NavBarBootstrap implements ApplicationListener<ContextRefreshedEven
         navigationBarList.add(omKurland);
         navigationBarList.add(ledigeJobs);
         navigationBarList.add(indkøbskurv);
+        navigationBarList.add(about);
 
 
         return navigationBarList;

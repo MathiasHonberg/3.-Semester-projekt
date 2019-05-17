@@ -6,7 +6,6 @@ import org.springframework.web.multipart.MultipartFile;
 import semesterprojekt.demo.Model.ProductModel;
 import semesterprojekt.demo.Repo.ProductRepo.IProductRepo;
 
-import javax.persistence.OrderBy;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.Base64;

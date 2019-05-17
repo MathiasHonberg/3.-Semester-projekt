@@ -1,9 +1,11 @@
 package semesterprojekt.demo.Repo.ProductRepo;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 import semesterprojekt.demo.Model.ProductModel;
 
 import java.util.Optional;
+
 
 public interface IProductRepo extends CrudRepository<ProductModel, Long>
 {

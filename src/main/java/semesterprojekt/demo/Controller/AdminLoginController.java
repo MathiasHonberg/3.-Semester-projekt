@@ -28,7 +28,6 @@ public class AdminLoginController
 
         log.info("ADMIN_LOGIN_ERROR action ended...");
 
-
         return ADMIN_LOGIN;
     }
 }
