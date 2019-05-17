@@ -65,7 +65,7 @@
                     <!--<span th:text="${fetchAllCategories.name}"></span>-->
                 <!--</option>-->
                 <!--</select>-->
-                <select th:field="${product.productCategories}"required>
+                <select th:field="${product.productCategories}" required>
                 <option name="pcid"  th:each="fetchAllCategories: ${fetchAllCategories}" th:value="${fetchAllCategories.id}">
                     <span th:text="${fetchAllCategories.name}"></span>
                 </option>
@@ -78,9 +78,6 @@
 
             </div>
     </form>
-    <br>
-    <br>
-    <br>
     <br>
     <br>
 

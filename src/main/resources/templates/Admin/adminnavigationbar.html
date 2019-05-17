@@ -23,21 +23,21 @@
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
         <a href="/adminmenu" class="w3-bar-item w3-button w3-padding-large">Admin Menu</a>
-        <a href="/admincategory" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Category</a>
-        <a href="/adminproduct" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Product</a>
+        <a href="/admincategory" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Kategori</a>
+        <a href="/adminproduct" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Produkt</a>
         <a href="/admincontact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Kontakt</a>
         <a href="/adminnavigationbar" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Navigations bar</a>
         <a href="/logout" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-power-off" style="font-size: 18px; color: white;"></i></a>
     </div>
 </div>
-<br><br>
+<br>
 
 <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
-    <h2 class="w3-center">Opdater Navigation bar</h2>
+    <h1 class="page-header">Opdater Navigation bar</h1>
     <p class="w3-half" th:each="navBar : ${navigationBar}">
-        <span  th:text="${navBar.name}"/>
-            <a th:href="@{'updatenavigationbar/' + ${navBar.id}}">
-                <button class="w3-button w3-black w3-section" style="color:green; margin-left: 5%">Opdater</button>
+        <span class="w3-quarter" th:text="${navBar.name}" style=" margin-top: 20px; font-size: larger"/>
+            <a class="w3-quarter" th:href="@{'updatenavbar/' + ${navBar.id}}">
+                <button class="w3-button w3-black w3-section" style="color:green; margin-left: 30px">Opdater</button>
             </a>
     </p>
 </div>

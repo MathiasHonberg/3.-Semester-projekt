@@ -31,14 +31,19 @@ public class AdminHomeController
     private final String ADMIN_PRODUCT = "/admin/adminproduct";
     private final String ADMIN_PRODUCT_UPDATE = "/admin/adminupdateproduct";
     private final String ADMIN_NAVIGATION_BAR = "/admin/adminnavigationbar";
+    private final String ADMIN_NAVBAR_UPDATE = "/admin/adminupdatenavbar";
     private final String REDIRECT_ADMIN_CATEGORY = "redirect:/admincategory";
     private final String REDIRECT_ADMIN_MENU= "redirect:/adminmenu";
     private final String REDIRECT_ADMIN_PRODUCT = "redirect:/adminproduct";
     private final String REDIRECT_ADMIN_CONTACT = "redirect:/admincontact";
+    private final String REDIRECT_ADMIN_NAVBAR = "redirect:/adminnavigationbar";
+    private final String ADMIN_KEYWORD = "/admin/adminkeyword";
 
     Long tmpId;
     Long tempPId;
+    Long tempNBId;
     String tmpImg;
+    String tempFN;
 
     @Autowired
     private IContactService contactService;
@@ -152,7 +157,7 @@ public class AdminHomeController
 
         if(!imageFile.isEmpty())
         {
-            productService.saveProductImage(productModel, imageFile);
+            productService.saveNewProduct(productModel, imageFile);
         }
 
         return REDIRECT_ADMIN_PRODUCT;
@@ -179,28 +184,39 @@ public class AdminHomeController
     public String updateProduct(@PathVariable("id") Long id, Model model)
     {
         tempPId = id;
+        tempFN = productService.findProduct(id).getProductFileName();
         tmpImg = productService.findProduct(id).getProductImage();
         ProductModel productModel = productService.findProduct(id);
+        productModel.setProductFileName(tempFN);
+        productModel.setProductImage(tmpImg);
 
         model.addAttribute("fetchAllCategories", categoriesService.fetchAllCategories());
         model.addAttribute("oldProduct", productModel);
-        model.addAttribute("product", new ProductModel());
 
 
         return ADMIN_PRODUCT_UPDATE;
     }
 
     @PostMapping("/updateproduct")
-    public String updateProduct(@RequestParam("fileName") MultipartFile imageFile, @ModelAttribute ProductModel productModel) throws Exception
+    public String updateProduct(@RequestParam("fileName") MultipartFile imageFile, @RequestParam("pcid") Long id, ProductModel productModel) throws Exception
     {
-        if (productModel != null)
+        ProductCategories pc = categoriesService.findProductCategory(id);
+        if(!imageFile.isEmpty())
         {
+            productModel.setProductFileName(null);
+            productModel.setProductImage(null);
             productModel.setId(tempPId);
+            productModel.setProductCategories(pc);
+            productService.saveProductImage(productModel, imageFile);
+        }else {
+            productModel.setId(tempPId);
+            productModel.setProductFileName(tempFN);
+            productModel.setProductImage(tmpImg);
+            productModel.setProductCategories(pc);
             productService.editProduct(productModel);
         }
 
-
-        return "redirect:/adminproduct";
+        return REDIRECT_ADMIN_PRODUCT;
     }
     
     @GetMapping("/updatecontact/{id}")
@@ -249,7 +265,6 @@ public class AdminHomeController
     }
 
 
-//ADMIN NAVIGATION BAR
     @GetMapping("/adminnavigationbar")
     public String adminNavigationBar(Model model)
     {
@@ -258,27 +273,23 @@ public class AdminHomeController
         return ADMIN_NAVIGATION_BAR;
     }
 
-//    @GetMapping("/updatenavbar/{id}")
-//    public String updateNavBar(@PathVariable("id") Long id, Model model)
-//    {
-//        tempNBId = id;
-//        NavigationBar navigationBar = navBarService.findNavigationName(id);
-//        model.addAttribute("navbar", navigationBar);
-//        return ADMIN_CONTACT_UPDATE;
-//    }
-//
-//    @PostMapping("/updatecontact")
-//    public String updateNavBar(NavigationBar nb)
-//    {
-//        navBarService.deleteNavigationName(tempNBId);
-//        navBarService.editNavBar(nb);
-//
-//
-//        return "redirect:/admincontact";
-//    }
+    @GetMapping("/updatenavbar/{id}")
+    public String updateNavBar(@PathVariable("id") Long id, Model model)
+    {
+        tempNBId = id;
+        NavigationBar navigationBar = navBarService.findNaviBarById(tempNBId);
+        model.addAttribute("navbar", navigationBar);
+        return ADMIN_NAVBAR_UPDATE;
+    }
+
+    @PostMapping("/updatenavbar")
+    public String updateNavBar(NavigationBar nb)
+    {
+        nb.setId(tempNBId);
+        navBarService.editNavBar(nb);
+
+
+        return REDIRECT_ADMIN_NAVBAR;
+    }
 
 }
-
-
-
-

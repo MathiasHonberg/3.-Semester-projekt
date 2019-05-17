@@ -11,7 +11,6 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
 public class ProductCategories
 {
     @Id
@@ -47,5 +46,12 @@ public class ProductCategories
     public ProductCategories(String name, String productImage) {
         this.name = name;
         this.categoryImage = productImage;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductCategories{" +
+                " productModels=" + productModels +
+                '}';
     }
 }

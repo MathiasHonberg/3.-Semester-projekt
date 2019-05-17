@@ -35,39 +35,40 @@
 
 <div class="container">
     <h1 class="page-header">Opdater Produkt </h1>
-
-    <form class="md-form" th:action="@{/updateproduct}" enctype="multipart/form-data" method="POST" th:object="${ProductModel}">
-        <div class="file-field">
-            <div class="btn btn-primary btn-sm float-left">
-                <span>Choose Image (Max size 1MB)</span>
-                <br>
-                <input type="file" name="fileName" id="i_file">
+    <form class="md-form" th:action="@{/updateproduct}" enctype="multipart/form-data" method="POST" th:object="${oldProduct}">
+        <!--If you dont send the ID, JPA will create a new student object-->
+        <input type="hidden" th:field="${oldProduct.id}"/>
+            <div class="file-field">
+                <div class="btn btn-primary btn-sm float-left">
+                    <span>Choose Image (Max size 1MB)</span>
+                    <br>
+                    <input type="file" name="fileName" id="i_file">
+                </div>
             </div>
-        </div>
         <div>
             <br><br><br><br>
-            <p>Product name: </p><input type="text" size="40" th:value="${oldProduct.name}" name="name" required/>
+            <div>
+                <p>Nuværende billede: </p>
+                <img th:src="${oldProduct.productImage}" alt="TobiasNK" style="width:20%">
+            </div>
+            <br>
+            <p>Produkt navn: </p><input type="text" size="40" th:value="${oldProduct.name}" name="name" required/>
             <br><br>
-            <p>Price: </p><input type="number" size="10" th:value="${oldProduct.price}" name="price" required/>
+            <p>Pris: </p><input type="number" size="10" th:value="${oldProduct.price}" name="price" required/>
             <br><br>
-            <p>Short Description: </p><input type="text" size="40" th:value="${oldProduct.shortDescription}" name="shortDescription" required/>
+            <p>Kort beskrivelse: </p><input type="text" size="40" th:value="${oldProduct.shortDescription}" name="shortDescription" required/>
             <br><br>
-            <p>Long Description: </p><textarea rows="4" cols="50" th:text="${oldProduct.longDescription}" name="longDescription" required></textarea>
+            <p>Lang beskrivelse: </p><textarea rows="4" cols="50" th:text="${oldProduct.longDescription}" name="longDescription" required></textarea>
             <br><br>
-            <p>Category:</p>
+            <p>Kategori:</p>
 
-
-            <!--<select >-->
-            <!--<option th:each="fetchAllCategories: ${fetchAllCategories}" value="">-->
-            <!--<span th:text="${fetchAllCategories.name}"></span>-->
-            <!--</option>-->
-            <!--</select>-->
-            <select th:field="${product.productCategories}">
-                <option name="pcid" th:each="fetchAllCategories: ${fetchAllCategories}" th:value="${fetchAllCategories.id}">
+            <select name="pcid" required>
+                <option th:each="fetchAllCategories : ${fetchAllCategories}" th:value="${fetchAllCategories.id}">
                     <span th:text="${fetchAllCategories.name}"></span>
                 </option>
             </select>
-            <br><br><br>
+
+            <br><br>
             <button class="btn btn-primary" type="submit" id="i_submit">Updater</button>
             <div class="file-path-wrapper">
             </div>

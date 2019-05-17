@@ -9,10 +9,9 @@ import java.util.Optional;
 public interface INavBarService
 {
     NavigationBar addNavigationName(NavigationBar navigationBar);
-
-    Optional<NavigationBar> findNavigationName(Long id);
-
+    NavigationBar findNaviBarById(Long id);
+    NavigationBar findNavigationName(Long id);
     Iterable<NavigationBar> fetchAllNames();
-
     void deleteNavigationName(Long id);
+    void editNavBar(NavigationBar navigationBar);
 }

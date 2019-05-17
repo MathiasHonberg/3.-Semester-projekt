@@ -35,8 +35,22 @@ public class NavBarServiceImpl implements INavBarService
     }
 
     @Override
-    public Optional<NavigationBar> findNavigationName(Long id)
+    public NavigationBar findNavigationName(Long id)
     {
-        return navBarRepo.findById(id);
+        return navBarRepo.findAllById(id);
+    }
+
+    @Override
+    public NavigationBar findNaviBarById(Long id) {
+        return navBarRepo.findAllById(id);
+    }
+
+    @Override
+    public void editNavBar(NavigationBar navigationBar)
+    {
+        Long id = navigationBar.getId();
+        String name = navigationBar.getName();
+
+        navBarRepo.UpdateNavBarById(name, id);
     }
 }

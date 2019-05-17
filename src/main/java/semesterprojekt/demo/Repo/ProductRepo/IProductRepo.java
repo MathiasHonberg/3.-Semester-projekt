@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import semesterprojekt.demo.Model.ProductCategories;
 import semesterprojekt.demo.Model.ProductModel;
 
 import javax.transaction.Transactional;
@@ -14,10 +15,6 @@ public interface IProductRepo extends CrudRepository<ProductModel, Long>
 
     ProductModel findAllById (Long id);
 
-//    @Query("SELECT p.id, p.name, p.shortDescription, p.shortDescription, p.price" +
-//            " FROM ProductModel p WHERE p.productCategories.id = :id")
-//    List<ProductModel> findProductsByCategories(Long id);
-
     @Modifying(clearAutomatically=true)
     @Transactional
     @Query("UPDATE ProductModel p SET " +
@@ -26,7 +23,8 @@ public interface IProductRepo extends CrudRepository<ProductModel, Long>
             "p.shortDescription=:sD, " +
             "p.longDescription=:lD, " +
             "p.productFileName=:pF, " +
-            "p.productImage=:img " +
+            "p.productImage=:img, " +
+            "p.productCategories=:pC " +
             "WHERE p.id =:id")
     void updateProductInfoById(
             @Param("name") String name,
@@ -35,6 +33,7 @@ public interface IProductRepo extends CrudRepository<ProductModel, Long>
             @Param("lD") String longDescription,
             @Param("pF") String productFileName,
             @Param("img") String productImage,
+            @Param("pC") ProductCategories pc,
             @Param("id") Long id);
 
 }
