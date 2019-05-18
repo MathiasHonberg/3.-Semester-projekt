@@ -23,14 +23,12 @@ public class NavBarBootstrap implements ApplicationListener<ContextRefreshedEven
         //Navigation bar
         List<NavigationBar> navigationBarList = new ArrayList<>();
         NavigationBar home = new NavigationBar("Home", "/");
-
-
         NavigationBar produkter = new NavigationBar("Produkter", "/productcategories");
         NavigationBar services = new NavigationBar("Services", "/contact");
         NavigationBar projekter = new NavigationBar("Projekter", "/contact");
         NavigationBar kontakt = new NavigationBar("Om Kurland", "/contact");
+        NavigationBar review = new NavigationBar("Review", "/review");
         NavigationBar omKurland = new NavigationBar("Kontakt", "/contact");
-        NavigationBar ledigeJobs = new NavigationBar("Ledige Jobs", "/contact");
         NavigationBar indkøbskurv = new NavigationBar("Indkøbskurv", "/contact");
 
 
@@ -40,7 +38,7 @@ public class NavBarBootstrap implements ApplicationListener<ContextRefreshedEven
         navigationBarList.add(projekter);
         navigationBarList.add(kontakt);
         navigationBarList.add(omKurland);
-        navigationBarList.add(ledigeJobs);
+        navigationBarList.add(review);
         navigationBarList.add(indkøbskurv);
 
 
