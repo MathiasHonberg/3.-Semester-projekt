@@ -78,7 +78,8 @@ public class ProductCategoriesBootstrap implements ApplicationListener<ContextRe
     }
 
     @Override
-    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent)
+    {
         System.out.println("PRODUCT_CATEGORIES context Refreshed");
         iCategoriesRepo.saveAll(createProductCategories());
     }

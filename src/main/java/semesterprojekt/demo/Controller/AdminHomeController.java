@@ -6,16 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import semesterprojekt.demo.Model.Contact;
-import semesterprojekt.demo.Model.NavigationBar;
+import semesterprojekt.demo.Model.*;
 import semesterprojekt.demo.Service.NavigationBar.NavBarServiceImpl;
 import semesterprojekt.demo.Service.NewsServiceImpl;
 import org.springframework.web.bind.annotation.PostMapping;
 import semesterprojekt.demo.Service.IContactService;
-import semesterprojekt.demo.Model.ProductCategories;
-import semesterprojekt.demo.Model.ProductModel;
 import semesterprojekt.demo.Service.ProductService.CategoriesServiceImpl;
 import semesterprojekt.demo.Service.ProductService.ProductServiceImpl;
+import semesterprojekt.demo.Service.ReviewService.ReviewServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -32,12 +30,13 @@ public class AdminHomeController
     private final String ADMIN_PRODUCT_UPDATE = "/admin/adminupdateproduct";
     private final String ADMIN_NAVIGATION_BAR = "/admin/adminnavigationbar";
     private final String ADMIN_NAVBAR_UPDATE = "/admin/adminupdatenavbar";
+    private final String ADMIN_REVIEW = "/admin/adminreview";
     private final String REDIRECT_ADMIN_CATEGORY = "redirect:/admincategory";
     private final String REDIRECT_ADMIN_MENU= "redirect:/adminmenu";
     private final String REDIRECT_ADMIN_PRODUCT = "redirect:/adminproduct";
     private final String REDIRECT_ADMIN_CONTACT = "redirect:/admincontact";
     private final String REDIRECT_ADMIN_NAVBAR = "redirect:/adminnavigationbar";
-    private final String ADMIN_KEYWORD = "/admin/adminkeyword";
+    private final String REDIRECT_ADMIN_REVIEW = "redirect:/adminreview";
 
     Long tmpId;
     Long tempPId;
@@ -60,11 +59,16 @@ public class AdminHomeController
     @Autowired
     private NavBarServiceImpl navBarService;
 
+    @Autowired
+    private ReviewServiceImpl reviewService;
+
+
     @GetMapping("/adminmenu")
     public String adminMenu(Model model)
     {
         log.info("ADMIN_MENU action called...");
 
+        model.addAttribute("numberOfNotifications", numberOfNotifications());
         model.addAttribute("fetchAllNews", newsServiceImpl.fetchAllNews());
 
         log.info("ADMIN_MENU action ended...");
@@ -105,6 +109,7 @@ public class AdminHomeController
     public String adminCategory(Model model)
     {
 
+        model.addAttribute("numberOfNotifications", numberOfNotifications());
         model.addAttribute("fetchAllCategories", categoriesService.fetchAllCategories());
         model.addAttribute("pc", new ProductCategories());
 
@@ -144,6 +149,7 @@ public class AdminHomeController
     @GetMapping("/adminproduct")
     public String adminProduct(Model model)
     {
+        model.addAttribute("numberOfNotifications", numberOfNotifications());
         model.addAttribute("fetchAllProducts", productService.fetchAllProducts());
         model.addAttribute("fetchAllCategories", categoriesService.fetchAllCategories());
         model.addAttribute("product", new ProductModel());
@@ -190,6 +196,7 @@ public class AdminHomeController
         productModel.setProductFileName(tempFN);
         productModel.setProductImage(tmpImg);
 
+        model.addAttribute("numberOfNotifications", numberOfNotifications());
         model.addAttribute("fetchAllCategories", categoriesService.fetchAllCategories());
         model.addAttribute("oldProduct", productModel);
 
@@ -225,7 +232,10 @@ public class AdminHomeController
         tmpId = id;
         Contact contact = contactService.findContactById(id);
         System.out.println(contact);
+
+        model.addAttribute("numberOfNotifications", numberOfNotifications());
         model.addAttribute("contact", contact);
+
         return ADMIN_CONTACT_UPDATE;
     }
 
@@ -239,12 +249,13 @@ public class AdminHomeController
 
         log.info("UPDATE_CONTACT action ended...");
 
-        return "redirect:/admincontact";
+        return REDIRECT_ADMIN_CONTACT;
     }
 
     @GetMapping("/admincontact")
     public String adminContact(Model model)
     {
+        model.addAttribute("numberOfNotifications", numberOfNotifications());
         model.addAttribute("contact", contactService.findAll());
         log.info("ADMIN_CONTACT action called...");
         return ADMIN_CONTACT;
@@ -254,6 +265,7 @@ public class AdminHomeController
     public String createContact(Contact contact)
     {
         contactService.addContact(contact);
+
         return REDIRECT_ADMIN_CONTACT;
     }
     @GetMapping("/deletecontact/{id}")
@@ -268,6 +280,7 @@ public class AdminHomeController
     @GetMapping("/adminnavigationbar")
     public String adminNavigationBar(Model model)
     {
+        model.addAttribute("numberOfNotifications", numberOfNotifications());
         model.addAttribute("navigationBar", navBarService.fetchAllNames());
 
         return ADMIN_NAVIGATION_BAR;
@@ -278,7 +291,10 @@ public class AdminHomeController
     {
         tempNBId = id;
         NavigationBar navigationBar = navBarService.findNaviBarById(tempNBId);
+
+        model.addAttribute("numberOfNotifications", numberOfNotifications());
         model.addAttribute("navbar", navigationBar);
+
         return ADMIN_NAVBAR_UPDATE;
     }
 
@@ -290,6 +306,41 @@ public class AdminHomeController
 
 
         return REDIRECT_ADMIN_NAVBAR;
+    }
+
+    @GetMapping("/adminreview")
+    public String adminReview(Model model)
+    {
+        model.addAttribute("navigationBar", navBarService.fetchAllNames());
+        model.addAttribute("reviews", reviewService.fetchAllReviews());
+        model.addAttribute("numberOfNotifications", numberOfNotifications());
+
+        return ADMIN_REVIEW;
+    }
+
+    @PostMapping("/verifyreview")
+    public String verifyReview(@RequestParam("reviewid") Long id)
+    {
+        //Review review = reviewService.findReviewById(id);
+
+        reviewService.verifyReview(reviewService.findReviewById(id));
+        return REDIRECT_ADMIN_REVIEW;
+    }
+
+    public int numberOfNotifications()
+    {
+        int counter = 0;
+
+        Iterable<Review> reviewList = reviewService.fetchAllReviews();
+
+        for(Review r : reviewList)
+        {
+            if(!r.getVerified())
+            {
+                counter++;
+            }
+        }
+        return counter;
     }
 
 }
