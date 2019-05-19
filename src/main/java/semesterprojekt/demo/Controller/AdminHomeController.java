@@ -41,6 +41,7 @@ public class AdminHomeController
     Long tmpId;
     Long tempPId;
     Long tempNBId;
+    Long tempRID;
     String tmpImg;
     String tempFN;
 
@@ -311,20 +312,48 @@ public class AdminHomeController
     @GetMapping("/adminreview")
     public String adminReview(Model model)
     {
+        log.info("ADMIN_VERIFY action called...");
+
         model.addAttribute("navigationBar", navBarService.fetchAllNames());
         model.addAttribute("reviews", reviewService.fetchAllReviews());
         model.addAttribute("numberOfNotifications", numberOfNotifications());
 
+        log.info("ADMIN_VERIFY action ended...");
+
         return ADMIN_REVIEW;
     }
 
-    @PostMapping("/verifyreview")
-    public String verifyReview(@RequestParam("reviewid") Long id)
+    @GetMapping("verify/specificreview/{id}")
+    public String verifyReview(@PathVariable("id") Long id)
     {
+        log.info("VERIFY_SPECIFIC_REVIEW action called...");
         //Review review = reviewService.findReviewById(id);
+        if(id != null)
+        {
+            reviewService.verifyReview(reviewService.findReviewById(id));
+        }
 
-        reviewService.verifyReview(reviewService.findReviewById(id));
+        log.info("VERIFY_SPECIFIC_REVIEW action ended...");
+
+
         return REDIRECT_ADMIN_REVIEW;
+    }
+
+    @GetMapping("delete/specificreview/{id}")
+    public String deleteSpecificReview(@PathVariable("id") Long id)
+    {
+
+        log.info("DELETE_SPECIFIC_REVIEW action called...");
+
+        if(id != null)
+        {
+            reviewService.deleteReview(id);
+        }
+
+        log.info("DELETE_SPECIFIC_REVIEW action ended...");
+
+        return REDIRECT_ADMIN_REVIEW;
+
     }
 
     public int numberOfNotifications()

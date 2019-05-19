@@ -30,7 +30,7 @@ public class ReviewServiceImpl implements IReviewService
     }
 
     @Override
-    public void deleteContact(Long id)
+    public void deleteReview(Long id)
     {
         iReviewRepo.deleteById(id);
     }

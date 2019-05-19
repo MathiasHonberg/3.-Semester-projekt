@@ -9,6 +9,6 @@ public interface IReviewService
     Iterable<Review> fetchAllReviews();
     Review findReviewById(Long id);
     Review addReview(Review r);
-    void deleteContact(Long id);
+    void deleteReview(Long id);
     void verifyReview(Review review);
 }
