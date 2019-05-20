@@ -34,7 +34,7 @@ public interface IServsRepo extends CrudRepository<Servs, Long> {
     @Modifying(clearAutomatically=true)
     @Transactional
     @Query("SELECT s FROM Servs s " +
-            "WHERE s.name LIKE %:search%")
+            "WHERE s.name LIKE %:search% OR s.shortDescription LIKE %:search% OR s.longDescription LIKE %:search%")
     Iterable<Servs> searchAll(
             @Param("search") String search);
 }
