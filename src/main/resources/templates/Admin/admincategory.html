@@ -26,6 +26,10 @@
         <a href="/adminmenu" class="w3-bar-item w3-button w3-padding-large">Admin Menu</a>
         <a href="/admincategory" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Kategory</a>
         <a href="/adminproduct" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Produkt</a>
+        <a href="/adminreview" id="notification" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Review
+            <span th:if="${numberOfNotifications} > 0" style="margin-left: 3px; border-radius: 6px" class="w3-tag w3-red"
+                  th:text="${numberOfNotifications}"></span>
+        </a>
         <a href="/admincontact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Kontakt</a>
         <a href="/adminabout" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin About</a>
         <a href="/adminnavigationbar" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Navigations bar</a>
