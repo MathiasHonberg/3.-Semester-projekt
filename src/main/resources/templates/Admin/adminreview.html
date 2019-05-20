@@ -48,6 +48,41 @@
 <div class="w3-row w3-padding w3-border">
 
     <div class="container" style="margin-left: 50px">
+        <!-- review entries -->
+        <div class="w3-col l9 s12">
+            <!-- review entry -->
+            <div class="w3-container" th:each="reviews : ${reviews}">
+                <div th:if="${!reviews.verified}">
+                    <div class="w3-container w3-white w3-margin w3-padding-large" style="border: 2px solid lightgrey; border-radius: 3px">
+                        <div class="w3-half" style="border-bottom: 2px solid whitesmoke; border-right: 2px solid whitesmoke">
+                            <h4><span class="w3-opacity">Emne: </span><span th:text="${reviews.topic}"></span></h4>
+                        </div>
+                        <div class="w3-half" style="border-bottom: 2px solid whitesmoke">
+                            <h4 style="margin-left: 5px"><span class="w3-opacity"><i class="fa fa-user"></i> Navn: </span><span th:text="${reviews.name}"></span></h4>
+                        </div>
+                        <br><br>
+                        <div class="w3-justify">
+                            <p th:text="${reviews.description}"></p>
+                            <br>
+                            <div th:if="${!reviews.verified}">
+                                <a th:href="${'verify/specificreview/' + reviews.id}" onclick="return confirmReview()">
+                                    <p class="w3-left"><button class="w3-button w3-green"><b><i class="fa fa-thumbs-up"></i> Godkend</b></button></p>
+                                </a>
+                            </div>
+                                <a th:href="${'delete/specificreview/' + reviews.id}" onclick="return confirmDelete()">
+                                    <p style="margin-left: 20px" class="w3-left"><button class="w3-button w3-red"><b>
+                                        <i class="fa fa-remove" style="color: black"></i> Slet</b></button></p>
+                                </a>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="margin-left: 50px">
 
         <!-- Create review -->
         <div class="w3-container w3-white w3-margin w3-padding-large">
@@ -57,26 +92,23 @@
         <div class="w3-col l9 s12">
             <!-- review entry -->
             <div class="w3-container" th:each="reviews : ${reviews}">
-                <div class="w3-container w3-white w3-margin w3-padding-large" style="border: 2px solid lightgrey; border-radius: 3px">
-                    <div class="w3-half" style="border-bottom: 2px solid whitesmoke; border-right: 2px solid whitesmoke">
-                        <h4><span class="w3-opacity">Emne: </span><span th:text="${reviews.topic}"></span></h4>
-                    </div>
-                    <div class="w3-half" style="border-bottom: 2px solid whitesmoke">
-                        <h4 style="margin-left: 5px"><span class="w3-opacity"><i class="fa fa-user"></i> Navn: </span><span th:text="${reviews.name}"></span></h4>
-                    </div>
-                    <br><br>
-                    <div class="w3-justify">
-                        <p th:text="${reviews.description}"></p>
-                        <br>
-                        <div th:if="${!reviews.verified}">
-                            <a th:href="${'verify/specificreview/' + reviews.id}" onclick="return confirmReview()">
-                                <p class="w3-left"><button class="w3-button w3-green"><b><i class="fa fa-thumbs-up"></i> Godkend</b></button></p>
-                            </a>
+                <div th:if="${reviews.verified}">
+                    <div class="w3-container w3-white w3-margin w3-padding-large" style="border: 2px solid lightgrey; border-radius: 3px">
+                        <div class="w3-half" style="border-bottom: 2px solid whitesmoke; border-right: 2px solid whitesmoke">
+                            <h4><span class="w3-opacity">Emne: </span><span th:text="${reviews.topic}"></span></h4>
                         </div>
+                        <div class="w3-half" style="border-bottom: 2px solid whitesmoke">
+                            <h4 style="margin-left: 5px"><span class="w3-opacity"><i class="fa fa-user"></i> Navn: </span><span th:text="${reviews.name}"></span></h4>
+                        </div>
+                        <br><br>
+                        <div class="w3-justify">
+                            <p th:text="${reviews.description}"></p>
+                            <br>
                             <a th:href="${'delete/specificreview/' + reviews.id}" onclick="return confirmDelete()">
                                 <p style="margin-left: 20px" class="w3-left"><button class="w3-button w3-red"><b>
                                     <i class="fa fa-remove" style="color: black"></i> Slet</b></button></p>
                             </a>
+                        </div>
                     </div>
                 </div>
                 <br>
