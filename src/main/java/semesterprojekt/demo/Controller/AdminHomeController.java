@@ -6,16 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import semesterprojekt.demo.Model.Contact;
-import semesterprojekt.demo.Model.NavigationBar;
+import semesterprojekt.demo.Model.*;
 import semesterprojekt.demo.Service.NavigationBar.NavBarServiceImpl;
 import semesterprojekt.demo.Service.NewsServiceImpl;
 import org.springframework.web.bind.annotation.PostMapping;
 import semesterprojekt.demo.Service.IContactService;
-import semesterprojekt.demo.Model.ProductCategories;
-import semesterprojekt.demo.Model.ProductModel;
 import semesterprojekt.demo.Service.ProductService.CategoriesServiceImpl;
 import semesterprojekt.demo.Service.ProductService.ProductServiceImpl;
+import semesterprojekt.demo.Service.ServsServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -31,14 +29,19 @@ public class AdminHomeController
     private final String ADMIN_PRODUCT = "/admin/adminproduct";
     private final String ADMIN_PRODUCT_UPDATE = "/admin/adminupdateproduct";
     private final String ADMIN_NAVIGATION_BAR = "/admin/adminnavigationbar";
+    private final String ADMIN_SERVS = "/admin/adminservs";
+    private final String ADMIN_SERVS_UPDATE = "/admin/adminservsupdate";
     private final String REDIRECT_ADMIN_CATEGORY = "redirect:/admincategory";
     private final String REDIRECT_ADMIN_MENU= "redirect:/adminmenu";
     private final String REDIRECT_ADMIN_PRODUCT = "redirect:/adminproduct";
     private final String REDIRECT_ADMIN_CONTACT = "redirect:/admincontact";
+    private final String REDIRECT_ADMIN_SERVS = "redirect:/adminservs";
 
     Long tmpId;
     Long tempPId;
+    Long teMPId;
     String tmpImg;
+    String tempfn;
 
     @Autowired
     private IContactService contactService;
@@ -54,6 +57,9 @@ public class AdminHomeController
 
     @Autowired
     private NavBarServiceImpl navBarService;
+
+    @Autowired
+    private ServsServiceImpl servsService;
 
     @GetMapping("/adminmenu")
     public String adminMenu(Model model)
@@ -256,6 +262,72 @@ public class AdminHomeController
         model.addAttribute("navigationBar", navBarService.fetchAllNames());
 
         return ADMIN_NAVIGATION_BAR;
+    }
+
+    @GetMapping("/adminservs")
+    public String adminservs(Model model)
+    {
+        model.addAttribute("servs", servsService.findAll());
+        return ADMIN_SERVS;
+    }
+
+    @GetMapping("/deleteservs/{id}")
+    public String deleteServs(@PathVariable("id")Long id)
+    {
+        servsService.deleteServs(id);
+
+        return REDIRECT_ADMIN_SERVS;
+    }
+
+    @PostMapping("/uploadservsimage")
+    public String adminServs(@RequestParam("fileName") MultipartFile imageFile, @ModelAttribute Servs s) throws Exception
+    {
+        if(!imageFile.isEmpty())
+        {
+            servsService.saveNewSercs(s, imageFile);
+        }
+        return REDIRECT_ADMIN_SERVS;
+    }
+
+    @GetMapping("/updateservs/{id}")
+    public String updateServs(@PathVariable("id") Long id, Model model)
+    {
+        teMPId = id;
+        tmpImg = servsService.findServsById(id).getImage();
+        tempfn =servsService.findServsById(id).getServsFileName();
+        Servs servs = servsService.findServsById(id);
+        servs.setServsFileName(tempfn);
+        servs.setImage(tmpImg);
+
+        model.addAttribute("oldServsmodel",servs);
+        model.addAttribute("servsmodel", new Servs());
+        return ADMIN_SERVS_UPDATE;
+    }
+
+    @PostMapping("/updateservs")
+    public String updateServs(@RequestParam("fileName") MultipartFile imageFile, @ModelAttribute Servs s) throws  Exception
+    {
+
+        if(!imageFile.isEmpty())
+        {
+            s.setServsFileName(null);
+            s.setImage(null);
+            s.setId(teMPId);
+            servsService.saveSercsImage(s, imageFile);
+        }else
+            s.setId(teMPId);
+            s.setServsFileName(tempfn);
+            s.setImage(tmpImg);
+            servsService.editServs(s);
+
+        return REDIRECT_ADMIN_SERVS;
+    }
+
+    @PostMapping("/createservs")
+    public String createServs(Servs s)
+    {
+        servsService.createServs(s);
+        return REDIRECT_ADMIN_SERVS;
     }
 
 //    @GetMapping("/updatenavbar/{id}")

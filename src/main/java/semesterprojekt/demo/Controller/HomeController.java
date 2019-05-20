@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import semesterprojekt.demo.Model.ProductModel;
 import semesterprojekt.demo.Service.ProductService.CategoriesServiceImpl;
 import semesterprojekt.demo.Service.ProductService.ProductServiceImpl;
+import semesterprojekt.demo.Service.ServsServiceImpl;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,8 @@ public class HomeController
     private final String PRODUCTS = "products";
     private final String PRODUCTINFO = "productinfo";
     private final String CONTACT = "contact";
+    private final String SERVS = "servs";
+    private final String SERVSMODEL = "servsmodel";
 
     @Autowired
     private NewsServiceImpl newsServiceImpl;
@@ -41,6 +45,9 @@ public class HomeController
 
     @Autowired
     private ContactServiceImpl contactService;
+
+    @Autowired
+    private ServsServiceImpl servsService;
 
     @GetMapping("/")
     public String fetchNews(Model model) throws SQLException
@@ -111,5 +118,24 @@ public class HomeController
         model.addAttribute("contact", contactService.findAll());
 
         return CONTACT;
+    }
+
+    @GetMapping("/servs")
+    public String servs(Model model)
+    {
+        log.info("SERVS action called...");
+        model.addAttribute("navigationBar", navBarService.fetchAllNames());
+        model.addAttribute("servs", servsService.findAll());
+        System.out.println(servsService.findAll());
+
+        return SERVS;
+    }
+
+    @GetMapping("/servsmodel/{id}")
+    public String servsModel(@PathVariable("id")Long id, Model model)
+    {
+        model.addAttribute("navigationBar", navBarService.fetchAllNames());
+        model.addAttribute("servsmodel", servsService.findServsById(id));
+        return SERVSMODEL;
     }
 }
