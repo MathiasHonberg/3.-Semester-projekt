@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-    html,body,h1,h2,h3,h4 {font-family:"Raleway", sans-serif}
+    html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
     .forsideheading:before, .forsideheading:after {
         background-color: #808285;
         content: "";
@@ -44,9 +44,10 @@
     #search-container button:hover {
         background: darkgrey;
     }
+
 </style>
 
-<body class="w3-white">
+<body>
 
 <!-- Navbar -->
 <div class="w3-top">
@@ -67,12 +68,11 @@
 </div>
 <br><br><br><br>
 
-<!-- Content -->
-<div class="w3-main">
-    <h1>Category: <span th:text="${category.name}"></span></h1>
 
-    <br>
+<!--Content-->
+<div class="w3-main">
     <div class="content cms-paragraph">
+    <h3 style="margin-left: 50px">Søgeresultater: <span th:text="${searchResults}"></span></h3>
         <h2 class="forsideheading">
             <span th:text="${navigationBar[1].name}"></span>
         </h2>
@@ -80,23 +80,50 @@
     <br>
     <!-- First Photo Grid-->
     <div class="w3-row-padding" style="max-width:1300px">
-        <div th:each = "products : ${products}" style=" margin-left: 35px">
+        <div th:each = "searchProducts : ${searchProducts}" style=" margin-left: 35px">
             <div class="w3-quarter w3-container w3-margin-bottom">
-                <a th:href="${'/productinfo/' + products.id}">
-                <img th:src="${products.productImage}" alt="TobiasNK" style="width:100%">
+                <a th:href="${'/productinfo/' + searchProducts.id}">
+                    <img th:src="${searchProducts.productImage}" alt="TobiasNK" style="width:100%">
                 </a>
-                    <div class="w3-container" style="background-color: whitesmoke; border-top: 5px solid;
+                <div class="w3-container" style="background-color: whitesmoke; border-top: 5px solid;
                      border-top-width: 5px !important; border-top-color: darkgrey !important;">
-                        <p><b><span th:text="${products.name}" style="font-size: x-large"></span></b></p>
-                        <p><span th:text="${products.shortDescription}" style="font-size: large"></span></p>
-                        <p><span th:text="${products.price} + ' kr.'" style="font-size: small"></span></p>
-                    </div>
+                    <p><b><span th:text="${searchProducts.name}" style="font-size: x-large"></span></b></p>
+                    <p><span th:text="${searchProducts.shortDescription}" style="font-size: large"></span></p>
+                    <p><span th:text="${searchProducts.price} + ' kr.'" style="font-size: small"></span></p>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<br><br><br><br><br>
+<div class="container">
+    <div class="w3-container w3-padding-32" id="productCategories">
+        <div class="content cms-paragraph">
+            <h2 class="forsideheading">
+                <span th:text="${navigationBar[2].name}"></span>
+            </h2>
+        </div>
+        <h2 class="w3-border-bottom w3-border-light-grey w3-padding-16"></h2>
+    </div>
+
+    <div class="w3-row-padding w3-padding-32" style="margin-right: 30px">
+        <div th:each="searchServices : ${searchServices}">
+            <div class="w3-third w3-margin-bottom">
+                <img th:src="${searchServices.image}" alt="New York" style="width:70%" class="w3-hover-opacity">
+                <div class="w3-container w3-white">
+                    <h3><b th:text="${searchServices.name}"></b></h3>
+                    <p th:text="${searchServices.shortDescription}" style="margin-right: 50px"></p>
+                    <p class="w3-opacity" th:text="${searchServices.price}"></p>
+                    <a th:href="@{'servsmodel/' + ${searchServices.id}}">
+                        <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Læs mere</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
 <footer id="footer" class="w3-container w3-padding-32 w3-light-grey w3-center">
     <h4>Footer</h4>
     <a href="#" class="w3-button w3-black w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>

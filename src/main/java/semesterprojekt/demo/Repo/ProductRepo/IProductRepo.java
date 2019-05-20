@@ -36,4 +36,11 @@ public interface IProductRepo extends CrudRepository<ProductModel, Long>
             @Param("pC") ProductCategories pc,
             @Param("id") Long id);
 
+    @Modifying(clearAutomatically=true)
+    @Transactional
+    @Query("SELECT p FROM ProductModel p " +
+            "WHERE p.name LIKE %:search% OR p.longDescription LIKE %:search% OR p.shortDescription LIKE %:search%")
+    Iterable<ProductModel> searchAll(
+            @Param("search") String search);
+
 }

@@ -15,5 +15,6 @@ public interface IProductService
     void deleteProduct(Long id);
     ProductModel saveProductImage(ProductModel productModel, MultipartFile file)throws IOException;
     void editProduct(ProductModel productModel);
+    Iterable<ProductModel> searchProducts(String searchAll);
 
 }

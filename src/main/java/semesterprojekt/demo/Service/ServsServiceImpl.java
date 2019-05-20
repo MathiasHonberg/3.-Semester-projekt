@@ -1,6 +1,7 @@
 package semesterprojekt.demo.Service;
 
 import com.sun.org.apache.xpath.internal.operations.Mult;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,6 +13,7 @@ import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.Base64;
 
+@Log
 @Service
 public class ServsServiceImpl implements IServsService {
 
@@ -87,5 +89,21 @@ public class ServsServiceImpl implements IServsService {
         s.setServsFileName(multipartFile.getOriginalFilename());
         s.setImage(encodedImage);
 
+    }
+
+    public Iterable<Servs> searchServices(String searchAll)
+    {
+        try
+        {
+            if(!searchAll.equals(""))
+            {
+                return servsRepo.searchAll(searchAll);
+            }
+        } catch (Exception a)
+        {
+            log.info(String.valueOf(a));
+        }
+
+        return null;
     }
 }

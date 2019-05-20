@@ -15,5 +15,6 @@ public interface IServsService {
     void deleteServs(Long id);
     Servs saveSercsImage(Servs s, MultipartFile multipartFile) throws IOException;
     void editServs(Servs servs);
+    Iterable<Servs> searchServices(String searchAll);
 
 }

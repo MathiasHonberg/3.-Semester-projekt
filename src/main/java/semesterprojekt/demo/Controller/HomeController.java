@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import semesterprojekt.demo.Model.Servs;
 import semesterprojekt.demo.Service.ContactServiceImpl;
 import semesterprojekt.demo.Service.NavigationBar.NavBarServiceImpl;
 import semesterprojekt.demo.Service.NewsServiceImpl;
@@ -30,6 +32,7 @@ public class HomeController
     private final String CONTACT = "contact";
     private final String SERVS = "servs";
     private final String SERVSMODEL = "servsmodel";
+    private final String SEARCH = "search";
 
     @Autowired
     private NewsServiceImpl newsServiceImpl;
@@ -137,6 +140,47 @@ public class HomeController
         model.addAttribute("navigationBar", navBarService.fetchAllNames());
         model.addAttribute("servsmodel", servsService.findServsById(id));
         return SERVSMODEL;
+    }
+
+    @GetMapping("/search")
+    public String search(@RequestParam(defaultValue = "") String searchAll, Model model)
+    {
+        model.addAttribute("navigationBar", navBarService.fetchAllNames());
+
+        int searchResults = 0;
+        try
+        {
+            log.info("SEARCH action called...");
+
+            Iterable<Servs> servsIterable = servsService.searchServices(searchAll);
+            List<Servs> servsList = new ArrayList<>();
+
+            for(Servs s : servsIterable)
+            {
+                servsList.add(s);
+                searchResults++;
+            }
+
+            Iterable<ProductModel> productModelIterable = productService.searchProducts(searchAll);
+            List<ProductModel> productModelList = new ArrayList<>();
+
+            for(ProductModel p : productModelIterable)
+            {
+                productModelList.add(p);
+                searchResults++;
+            }
+
+            model.addAttribute("searchProducts", productModelList);
+            model.addAttribute("searchServices", servsList);
+            model.addAttribute("searchResults", searchResults);
+
+            log.info("SEACH action ended...");
+        }catch (Exception a)
+        {
+            log.info(String.valueOf(a));
+        }
+
+        return SEARCH;
     }
 
 }

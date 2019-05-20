@@ -30,4 +30,11 @@ public interface IServsRepo extends CrudRepository<Servs, Long> {
             @Param("sF") String productFileName,
             @Param("img") String productImage,
             @Param("id") Long id);
+
+    @Modifying(clearAutomatically=true)
+    @Transactional
+    @Query("SELECT s FROM Servs s " +
+            "WHERE s.name LIKE %:search%")
+    Iterable<Servs> searchAll(
+            @Param("search") String search);
 }
