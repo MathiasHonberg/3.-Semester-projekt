@@ -1,4 +1,4 @@
-package semesterprojekt.demo.Controller;
+package semesterprojekt.demo.Controller.Admin;
 
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -63,7 +63,6 @@ public class HomeController
         return INDEX;
     }
 
-
     @GetMapping("/productcategories")
     public String productCategories(Model model)
     {
