@@ -36,7 +36,7 @@
 <div class="container">
     <h1 class="page-header">Opret Tjeneste </h1>
 
-    <form class="md-form" th:action="@{/createservs}" enctype="multipart/form-data" method="POST">
+    <form class="md-form" th:action="@{/saveservice}" enctype="multipart/form-data" method="POST">
         <div class="file-field">
             <div class="btn btn-primary btn-sm float-left">
                 <span>Choose Image (Max size 1MB)</span>
@@ -94,6 +94,7 @@
         <th>Kategori</th>
         <th>Navn</th>
         <th>Kort beskrivelse</th>
+        <th>Lang beskrivelse</th>
         <th></th>
     </tr>
     </thead>
@@ -105,6 +106,7 @@
         <td th:text="${serv.price}"></td>
         <td th:text="${serv.name}"></td>
         <td th:text="${serv.shortDescription}"></td>
+        <td th:text="${serv.longDescription}"></td>
         <td>
 
             <a class="glyphicon glyphicon-remove" title="Delete" th:href="@{'deleteservs/' + ${serv.id}}" onclick="return confirmDelete()">
