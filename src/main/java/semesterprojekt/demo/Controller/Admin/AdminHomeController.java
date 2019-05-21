@@ -9,9 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 import semesterprojekt.demo.Model.*;
 import semesterprojekt.demo.Service.NewsServiceImpl;
 import org.springframework.web.bind.annotation.PostMapping;
-import semesterprojekt.demo.Service.IContactService;
-import semesterprojekt.demo.Service.ProductService.CategoriesServiceImpl;
-import semesterprojekt.demo.Service.ProductService.ProductServiceImpl;
 import semesterprojekt.demo.Service.ReviewService.ReviewServiceImpl;
 
 @Log

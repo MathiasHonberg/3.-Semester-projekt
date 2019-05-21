@@ -11,7 +11,6 @@ import semesterprojekt.demo.Model.Servs;
 import semesterprojekt.demo.Service.ReviewService.ReviewServiceImpl;
 import semesterprojekt.demo.Service.ServsServiceImpl;
 
-import java.util.Base64;
 
 @Log
 @Controller
