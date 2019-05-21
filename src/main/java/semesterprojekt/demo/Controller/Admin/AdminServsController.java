@@ -11,6 +11,7 @@ import semesterprojekt.demo.Model.Servs;
 import semesterprojekt.demo.Service.ReviewService.ReviewServiceImpl;
 import semesterprojekt.demo.Service.ServsServiceImpl;
 
+
 @Log
 @Controller
 public class AdminServsController
@@ -34,7 +35,57 @@ public class AdminServsController
     public String adminservs(Model model)
     {
         model.addAttribute("servs", servsService.findAll());
+
         return ADMIN_SERVS;
+    }
+
+    @PostMapping("/saveservice")
+    public String adminServs(
+            @RequestParam("name") String name,
+            @RequestParam("shortDescription") String shortDescription,
+            @RequestParam("longDescription") String longDescription,
+            @RequestParam("price") String price,
+            @RequestParam("fileName") MultipartFile imageFile) throws Exception
+                {
+                    if(!imageFile.isEmpty())
+                    {
+                        servsService.saveNewSercs(
+                                name,
+                                shortDescription,
+                                longDescription,
+                                price,
+                                imageFile);
+                    }
+                    return REDIRECT_ADMIN_SERVS;
+                }
+
+    @GetMapping("/updateservs/{id}")
+    public String updateServs(@PathVariable("id") Long id, Model model)
+    {
+        teMPId = id;
+        tempfn =servsService.findServsById(id).getServsFileName();
+        tmpImg = servsService.findServsById(id).getImage();
+        Servs servs = servsService.findServsById(id);
+        servs.setServsFileName(tempfn);
+        servs.setImage(tmpImg);
+
+        model.addAttribute("oldServsmodel",servs);
+
+        //model.addAttribute("servsmodel", new Servs());
+        return ADMIN_SERVS_UPDATE;
+    }
+
+    @PostMapping("/updateservs")
+    public String updateServs(
+            @RequestParam("name") String name,
+            @RequestParam("shortDescription") String shortDescription,
+            @RequestParam("longDescription") String longDescription,
+            @RequestParam("price") String price,
+            @RequestParam("fileName") MultipartFile imageFile) throws Exception
+    {
+        servsService.editServs(name, shortDescription, longDescription, price, imageFile, teMPId);
+
+        return REDIRECT_ADMIN_SERVS;
     }
 
     @GetMapping("/deleteservs/{id}")
@@ -45,56 +96,6 @@ public class AdminServsController
         return REDIRECT_ADMIN_SERVS;
     }
 
-    @PostMapping("/uploadservsimage")
-    public String adminServs(@RequestParam("fileName") MultipartFile imageFile, @ModelAttribute Servs s) throws Exception
-    {
-        if(!imageFile.isEmpty())
-        {
-            servsService.saveNewSercs(s, imageFile);
-        }
-        return REDIRECT_ADMIN_SERVS;
-    }
-
-    @GetMapping("/updateservs/{id}")
-    public String updateServs(@PathVariable("id") Long id, Model model)
-    {
-        teMPId = id;
-        tmpImg = servsService.findServsById(id).getImage();
-        tempfn =servsService.findServsById(id).getServsFileName();
-        Servs servs = servsService.findServsById(id);
-        servs.setServsFileName(tempfn);
-        servs.setImage(tmpImg);
-
-        model.addAttribute("oldServsmodel",servs);
-        model.addAttribute("servsmodel", new Servs());
-        return ADMIN_SERVS_UPDATE;
-    }
-
-    @PostMapping("/updateservs")
-    public String updateServs(@RequestParam("fileName") MultipartFile imageFile, @ModelAttribute Servs s) throws  Exception
-    {
-
-        if(!imageFile.isEmpty())
-        {
-            s.setServsFileName(null);
-            s.setImage(null);
-            s.setId(teMPId);
-            servsService.saveSercsImage(s, imageFile);
-        }else
-            s.setId(teMPId);
-        s.setServsFileName(tempfn);
-        s.setImage(tmpImg);
-        servsService.editServs(s);
-
-        return REDIRECT_ADMIN_SERVS;
-    }
-
-    @PostMapping("/createservs")
-    public String createServs(Servs s)
-    {
-        servsService.createServs(s);
-        return REDIRECT_ADMIN_SERVS;
-    }
 
     public int numberOfNotifications()
     {

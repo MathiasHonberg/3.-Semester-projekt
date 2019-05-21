@@ -33,8 +33,27 @@ public interface IServsRepo extends CrudRepository<Servs, Long> {
 
     @Modifying(clearAutomatically=true)
     @Transactional
+    @Query("UPDATE Servs s SET " + "" +
+            "s.name=:name, " +
+            "s.price=:price, " +
+            "s.shortDescription=:sD, " +
+            "s.longDescription=:lD " +
+            "WHERE s.id =:id")
+    void updateServsInfoByIdWithoutImage(
+            @Param("name") String name,
+            @Param("price") String price,
+            @Param("sD") String shortDescription,
+            @Param("lD") String longDescription,
+            @Param("id") Long id);
+
+
+    @Modifying(clearAutomatically=true)
+    @Transactional
     @Query("SELECT s FROM Servs s " +
             "WHERE s.name LIKE %:search% OR s.shortDescription LIKE %:search% OR s.longDescription LIKE %:search%")
     Iterable<Servs> searchAll(
             @Param("search") String search);
+
+
+
 }

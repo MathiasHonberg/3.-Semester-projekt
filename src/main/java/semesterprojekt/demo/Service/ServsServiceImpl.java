@@ -1,11 +1,10 @@
 package semesterprojekt.demo.Service;
 
-import com.sun.org.apache.xpath.internal.operations.Mult;
 import lombok.extern.java.Log;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import semesterprojekt.demo.Model.ProductModel;
 import semesterprojekt.demo.Model.Servs;
 import semesterprojekt.demo.Repo.IServsRepo;
 
@@ -15,7 +14,8 @@ import java.util.Base64;
 
 @Log
 @Service
-public class ServsServiceImpl implements IServsService {
+public class ServsServiceImpl implements IServsService
+{
 
     @Autowired
     IServsRepo servsRepo;
@@ -33,23 +33,35 @@ public class ServsServiceImpl implements IServsService {
     @Override
     public Servs createServs(Servs s)
     {
-
         return servsRepo.save(s);
     }
 
     @Override
-    public void editServs(Servs servs)
-    {
-        Long id = servs.getId();
-        String name = servs.getName();
-        String price = servs.getPrice();
-        String shortDescription = servs.getShortDescription();
-        String longDescription = servs.getLongDescription();
-        String servsFileName = servs.getServsFileName();
-        String image = servs.getImage();
+    public void editServs(String name,
+                          String shortDescription,
+                          String longDescription,
+                          String price,
+                          MultipartFile imageFile,
+                          Long id)throws IOException {
+        if (imageFile.isEmpty()) {
+            servsRepo.updateServsInfoByIdWithoutImage(name, price, shortDescription, longDescription, id);
+        } else {
 
-        servsRepo.updateServsInfoById(name, price, shortDescription, longDescription, servsFileName, image, id);
+            byte[] byteArr = imageFile.getBytes();
+            Base64.Encoder encoder = Base64.getEncoder();
+            String encodedImage = "data:image/png;base64," + encoder.encodeToString(byteArr);
 
+
+            servsRepo.updateServsInfoById(
+                    name,
+                    price,
+                    shortDescription,
+                    longDescription,
+                    imageFile.getOriginalFilename(),
+                    encodedImage,
+                    id);
+
+        }
     }
 
     @Override
@@ -58,24 +70,28 @@ public class ServsServiceImpl implements IServsService {
         servsRepo.deleteById(id);
     }
 
+    @Override
     @Transactional
-    public Servs saveNewSercs(Servs servs, MultipartFile multipartFile) throws  IOException
+    public Servs saveNewSercs(String name,
+                              String shortDescription,
+                              String longDescription,
+                              String price,
+                              MultipartFile file) throws  IOException
     {
-        if (!multipartFile.isEmpty())
-        {
-            saveImages(servs, multipartFile);
-            servsRepo.save(servs);
-        }
-        return null;
-    }
+        byte [] byteArr = file.getBytes();
+        Base64.Encoder encoder = Base64.getEncoder();
+        String encodedImage = "data:image/png;base64," + encoder.encodeToString(byteArr);
 
-    @Transactional
-    public Servs saveSercsImage(Servs servs, MultipartFile multipartFile) throws IOException
-    {
-        if(!multipartFile.isEmpty())
+        if (!file.isEmpty())
         {
-            saveImages(servs, multipartFile);
-            editServs(servs);
+            Servs s = new Servs();
+            s.setName(name);
+            s.setServsFileName(file.getOriginalFilename());
+            s.setShortDescription(shortDescription);
+            s.setLongDescription(longDescription);
+            s.setPrice(price);
+            s.setImage(encodedImage);
+            servsRepo.save(s);
         }
         return null;
     }
@@ -106,4 +122,5 @@ public class ServsServiceImpl implements IServsService {
 
         return null;
     }
+
 }
