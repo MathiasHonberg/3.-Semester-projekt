@@ -48,7 +48,7 @@
                 <a class="filter" href="/search">
                     <button id="searchbutton" class="w3-padding-medium w3-hover-grey w3-right" type="submit"><i class="fa fa-search"></i></button>
                 </a>
-                <input id="searchinput" class="w3-padding-medium w3-hover-white w3-right" type="text" placeholder="Search.." name="searchAll">
+                <input id="searchinput" class="w3-padding-medium w3-hover-white w3-right" type="text" placeholder="Søg.." name="searchAll">
             </form>
         </div>
     </div>
@@ -77,26 +77,10 @@
 </p>
 </div>
 
-
-
-<!--<div th:each = "kontakts : ${kontakt}">-->
-    <!--&lt;!&ndash;<div class="w3-col l3 m6 w3-margin-bottom">&ndash;&gt;-->
-        <!--<div class="w3-display-container">-->
-            <!--<div class="w3-display-topleft w3-black w3-padding" th:text = "${kontakts.firstName}"></div>-->
-            <!--<div class="w3-display-topleft w3-black w3-padding" th:text = "${kontakts.lastName}"></div>-->
-            <!--<div class="w3-display-topleft w3-black w3-padding" th:text = "${kontakts.email}"></div>-->
-            <!--<div class="w3-display-topleft w3-black w3-padding" th:text = "${kontakts.adresse}"></div>-->
-            <!--<div class="w3-display-topleft w3-black w3-padding" th:text = "${kontakts.phoneNumber}"></div>-->
-        <!--</div>-->
-    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--</div>-->
-
 <!-- Content -->
-
-
 <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
     <!-- Dynamisk Overskrift -->
-    <h2 class="w3-wide w3-center"><span th:text="${navigationBar[5].name}"></span></h2>
+    <h2 class="w3-wide w3-center"><span th:text="${navigationBar[4].name}"></span></h2>
     <div class="w3-row w3-padding-32">
         <div class="w3-col m6 w3-large w3-margin-bottom" th:each="contacts : ${contact}">
             <span th:text="${contacts.firstName}"/> <span th:text="${contacts.lastName}"/><br>

@@ -29,9 +29,9 @@ public class AdminReviewController
     {
         log.info("ADMIN_VERIFY action called...");
 
+        model.addAttribute("numberOfNotifications", numberOfNotifications());
         model.addAttribute("navigationBar", navBarService.fetchAllNames());
         model.addAttribute("reviews", reviewService.fetchAllReviews());
-        model.addAttribute("numberOfNotifications", numberOfNotifications());
 
         log.info("ADMIN_VERIFY action ended...");
 

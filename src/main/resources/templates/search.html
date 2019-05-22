@@ -53,7 +53,6 @@
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
         <div th:each="navBar : ${navigationBar}">
-            <!--<a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>-->
             <a th:href="${navBar.urlPath}" class="w3-bar-item w3-button w3-padding-large w3-hide-small" th:text="${navBar.name}"></a>
         </div>
         <div class="search-container">
@@ -61,7 +60,7 @@
                 <a class="filter" href="/search">
                     <button id="searchbutton" class="w3-padding-medium w3-hover-grey w3-right" type="submit"><i class="fa fa-search"></i></button>
                 </a>
-                <input id="searchinput" class="w3-padding-medium w3-hover-white w3-right" type="text" placeholder="Search.." name="searchAll">
+                <input id="searchinput" class="w3-padding-medium w3-hover-white w3-right" type="text" placeholder="Søg.." name="searchAll">
             </form>
         </div>
     </div>

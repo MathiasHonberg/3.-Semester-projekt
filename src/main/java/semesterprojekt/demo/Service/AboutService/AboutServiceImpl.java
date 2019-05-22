@@ -64,4 +64,9 @@ public class AboutServiceImpl implements IAboutService
 
         return null;
     }
+
+    @Override
+    public void deleteAbout(Long id) {
+        iAboutRepo.deleteById(id);
+    }
 }

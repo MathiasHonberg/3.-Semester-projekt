@@ -34,6 +34,7 @@ public class AdminServsController
     @GetMapping("/adminservs")
     public String adminservs(Model model)
     {
+        model.addAttribute("numberOfNotifications", numberOfNotifications());
         model.addAttribute("servs", servsService.findAll());
 
         return ADMIN_SERVS;
@@ -62,6 +63,9 @@ public class AdminServsController
     @GetMapping("/updateservs/{id}")
     public String updateServs(@PathVariable("id") Long id, Model model)
     {
+
+        model.addAttribute("numberOfNotifications", numberOfNotifications());
+
         teMPId = id;
         tempfn =servsService.findServsById(id).getServsFileName();
         tmpImg = servsService.findServsById(id).getImage();

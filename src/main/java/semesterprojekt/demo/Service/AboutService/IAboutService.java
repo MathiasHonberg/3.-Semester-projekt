@@ -17,4 +17,6 @@ public interface IAboutService
 
     AboutModel updateAboutSubmit(MultipartFile imageFile, String heading, Long tmpId)throws IOException;
 
+    void deleteAbout(Long id);
+
 }

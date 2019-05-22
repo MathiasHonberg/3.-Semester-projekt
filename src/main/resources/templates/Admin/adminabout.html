@@ -22,8 +22,13 @@
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
         <a href="/adminmenu" class="w3-bar-item w3-button w3-padding-large">Admin Menu</a>
-        <a href="/admincategory" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Category</a>
-        <a href="/adminproduct" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Product</a>
+        <a href="/admincategory" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Kategori</a>
+        <a href="/adminproduct" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Produkt</a>
+        <a href="/adminservs" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Tjenester</a>
+        <a href="/adminreview" id="notification" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Review
+            <span th:if="${numberOfNotifications} > 0" style="margin-left: 3px; border-radius: 6px" class="w3-tag w3-red"
+                  th:text="${numberOfNotifications}"></span>
+        </a>
         <a href="/admincontact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Kontakt</a>
         <a href="/adminabout" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin About</a>
         <a href="/adminnavigationbar" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Admin Navigations bar</a>
@@ -49,7 +54,7 @@
                 <br><br><br><br>
                 <textarea type="text" class="form-control" rows="20" cols="10" placeholder="Vælg din about tekst" name="heading"></textarea>
                 <br><br>
-                <button class="btn btn-primary" type="submit" id="i_submit">Submit</button>
+                <button class="btn btn-primary" type="submit" id="i_submit">Opret</button>
 
             </div>
         </div>
@@ -77,9 +82,12 @@
         <td th:text="${about.id}"/>
         <td th:text="${about.heading}"/>
         <td th:text="${about.fileName}"/>
-        <td><img th:src="${about.profileImage}" style="width:100%"></img></td>
+        <td><img th:src="${about.profileImage}" style="width:100%"/></td>
         <td>
-            <a class="glyphicon glyphicon-cog" title="Edit" th:href="${'updateabout/' + about.id}">
+            <a class="glyphicon glyphicon-cog" title="Updater" th:href="${'updateabout/' + about.id}">
+                <!--<button class="btn btn-warning glyphicon glyphicon-pencil">edit</button>-->
+            </a>
+            <a class="glyphicon glyphicon-remove" title="Slet" th:href="${'delete/specificabout/' + about.id}" onclick="return confirmDelete()">
                 <!--<button class="btn btn-warning glyphicon glyphicon-pencil">edit</button>-->
             </a>
         </td>
@@ -126,7 +134,7 @@
     });
 
     function confirmDelete() {
-        if (confirm("Delete Image?") == true) {
+        if (confirm("Slet About?") == true) {
             return true;
         } else {
             return false;
