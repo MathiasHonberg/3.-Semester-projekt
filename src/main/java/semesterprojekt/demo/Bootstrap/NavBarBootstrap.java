@@ -37,7 +37,7 @@ public class NavBarBootstrap implements ApplicationListener<ContextRefreshedEven
         navigationBarList.add(kontakt);
         navigationBarList.add(omKurland);
         navigationBarList.add(review);
-        navigationBarList.add(indkøbskurv);
+        //navigationBarList.add(indkøbskurv);
 
 
         return navigationBarList;
