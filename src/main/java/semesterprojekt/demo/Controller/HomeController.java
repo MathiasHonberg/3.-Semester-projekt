@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import semesterprojekt.demo.Model.Servs;
+import semesterprojekt.demo.Service.AboutService.AboutServiceImpl;
 import semesterprojekt.demo.Service.ContactServiceImpl;
 import semesterprojekt.demo.Service.NavigationBar.NavBarServiceImpl;
 import semesterprojekt.demo.Service.NewsServiceImpl;
@@ -33,6 +34,8 @@ public class HomeController
     private final String SERVS = "servs";
     private final String SERVSMODEL = "servsmodel";
     private final String SEARCH = "search";
+    private final String ABOUT = "about";
+
 
     @Autowired
     private NewsServiceImpl newsServiceImpl;
@@ -51,6 +54,9 @@ public class HomeController
 
     @Autowired
     private ServsServiceImpl servsService;
+
+    @Autowired
+    private AboutServiceImpl aboutService;
 
     @GetMapping("/")
     public String fetchNews(Model model) throws SQLException
@@ -142,21 +148,19 @@ public class HomeController
         return SERVSMODEL;
     }
 
+
     @GetMapping("/search")
-    public String search(@RequestParam(defaultValue = "") String searchAll, Model model)
-    {
+    public String search(@RequestParam(defaultValue = "") String searchAll, Model model) {
         model.addAttribute("navigationBar", navBarService.fetchAllNames());
 
         int searchResults = 0;
-        try
-        {
+        try {
             log.info("SEARCH action called...");
 
             Iterable<Servs> servsIterable = servsService.searchServices(searchAll);
             List<Servs> servsList = new ArrayList<>();
 
-            for(Servs s : servsIterable)
-            {
+            for (Servs s : servsIterable) {
                 servsList.add(s);
                 searchResults++;
             }
@@ -164,8 +168,7 @@ public class HomeController
             Iterable<ProductModel> productModelIterable = productService.searchProducts(searchAll);
             List<ProductModel> productModelList = new ArrayList<>();
 
-            for(ProductModel p : productModelIterable)
-            {
+            for (ProductModel p : productModelIterable) {
                 productModelList.add(p);
                 searchResults++;
             }
@@ -175,12 +178,19 @@ public class HomeController
             model.addAttribute("searchResults", searchResults);
 
             log.info("SEACH action ended...");
-        }catch (Exception a)
-        {
+        } catch (Exception a) {
             log.info(String.valueOf(a));
         }
 
         return SEARCH;
+    }
+    @GetMapping("/about")
+    public String about(Model model)
+    {
+        model.addAttribute("navigationBar", navBarService.fetchAllNames());
+        model.addAttribute("about", aboutService.fetchTextAndProfileImage());
+        return ABOUT;
+
     }
 
 }
