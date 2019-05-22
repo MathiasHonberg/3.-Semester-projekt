@@ -2,6 +2,7 @@ package semesterprojekt.demo.Service.ProductService;
 
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import semesterprojekt.demo.Model.ProductCategories;
@@ -99,7 +100,7 @@ public class ProductServiceImpl implements IProductService
         {
             if(!searchAll.equals(""))
             {
-                return iProductRepo.searchAll(searchAll);
+                return iProductRepo.searchAll(searchAll.toLowerCase());
             }
         } catch (Exception a)
         {

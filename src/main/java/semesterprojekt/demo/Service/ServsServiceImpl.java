@@ -21,12 +21,14 @@ public class ServsServiceImpl implements IServsService
     IServsRepo servsRepo;
 
     @Override
-    public Iterable<Servs> findAll() {
+    public Iterable<Servs> findAll()
+    {
         return servsRepo.findAll();
     }
 
     @Override
-    public Servs findServsById(Long id) {
+    public Servs findServsById(Long id)
+    {
         return servsRepo.findAllById(id);
     }
 
@@ -113,7 +115,7 @@ public class ServsServiceImpl implements IServsService
         {
             if(!searchAll.equals(""))
             {
-                return servsRepo.searchAll(searchAll);
+                return servsRepo.searchAll(searchAll.toLowerCase());
             }
         } catch (Exception a)
         {

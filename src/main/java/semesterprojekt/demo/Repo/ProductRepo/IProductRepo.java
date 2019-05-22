@@ -39,7 +39,7 @@ public interface IProductRepo extends CrudRepository<ProductModel, Long>
     @Modifying(clearAutomatically=true)
     @Transactional
     @Query("SELECT p FROM ProductModel p " +
-            "WHERE p.name LIKE %:search% OR p.longDescription LIKE %:search% OR p.shortDescription LIKE %:search%")
+            "WHERE  lower(p.name) LIKE %:search% OR lower(p.longDescription) LIKE %:search% OR lower(p.shortDescription) LIKE %:search% ORDER BY p.name")
     Iterable<ProductModel> searchAll(
             @Param("search") String search);
 
