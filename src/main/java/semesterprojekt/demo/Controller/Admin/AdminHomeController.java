@@ -15,8 +15,8 @@ import semesterprojekt.demo.Service.ReviewService.ReviewServiceImpl;
 @Controller
 public class AdminHomeController
 {
-    private final String ADMIN_MENU = "/admin/adminmenu";
-    private final String REDIRECT_ADMIN_MENU= "redirect:/adminmenu";
+    private final String ADMIN_MENU = "/admin/admin";
+    private final String REDIRECT_ADMIN_MENU= "redirect:/admin";
 
     @Autowired
     private NewsServiceImpl newsServiceImpl;
@@ -25,7 +25,7 @@ public class AdminHomeController
     ReviewServiceImpl reviewService;
 
 
-    @GetMapping("/adminmenu")
+    @GetMapping("/admin")
     public String adminMenu(Model model)
     {
         log.info("ADMIN_MENU action called...");

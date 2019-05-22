@@ -46,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
                         "/admincategory",
                         "/admincontact",
                         "/adminlogin",
-                        "/adminmenu",
+                        "/admin",
                         "/adminnavigationbar",
                         "/adminproduct",
                         "/adminreview",
@@ -60,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
                 .and().formLogin().loginPage("/adminlogin")
                 .permitAll()
                 .failureUrl("/login-error")
-                .defaultSuccessUrl("/adminmenu")
+                .defaultSuccessUrl("/admin")
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/adminlogin");
