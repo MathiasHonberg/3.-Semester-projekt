@@ -30,6 +30,8 @@ public class NewsServiceImpl implements INewsService
             Base64.Encoder encoder = Base64.getEncoder();
             String encodedImage = "data:image/png;base64," + encoder.encodeToString(byteArr);
 
+            System.out.println(encodedImage);
+
             newsModel.setFileName(imageFile.getOriginalFilename());
             newsModel.setImage(encodedImage);
             iNewsRepo.save(newsModel);
