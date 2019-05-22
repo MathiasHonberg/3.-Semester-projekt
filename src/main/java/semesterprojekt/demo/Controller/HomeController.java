@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import semesterprojekt.demo.Service.AboutService.AboutServiceImpl;
 import semesterprojekt.demo.Service.ContactServiceImpl;
 import semesterprojekt.demo.Service.NavigationBar.NavBarServiceImpl;
 import semesterprojekt.demo.Service.NewsServiceImpl;
@@ -30,6 +31,7 @@ public class HomeController
     private final String CONTACT = "contact";
     private final String SERVS = "servs";
     private final String SERVSMODEL = "servsmodel";
+    private final String ABOUT = "about";
 
     @Autowired
     private NewsServiceImpl newsServiceImpl;
@@ -48,6 +50,9 @@ public class HomeController
 
     @Autowired
     private ServsServiceImpl servsService;
+
+    @Autowired
+    private AboutServiceImpl aboutService;
 
     @GetMapping("/")
     public String fetchNews(Model model) throws SQLException
@@ -137,6 +142,14 @@ public class HomeController
         model.addAttribute("navigationBar", navBarService.fetchAllNames());
         model.addAttribute("servsmodel", servsService.findServsById(id));
         return SERVSMODEL;
+    }
+
+    @GetMapping("/about")
+    public String about(Model model)
+    {
+        model.addAttribute("navigationBar", navBarService.fetchAllNames());
+        model.addAttribute("about", aboutService.fetchTextAndProfileImage());
+        return ABOUT;
     }
 
 }
