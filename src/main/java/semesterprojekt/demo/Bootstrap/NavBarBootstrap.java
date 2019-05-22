@@ -28,7 +28,7 @@ public class NavBarBootstrap implements ApplicationListener<ContextRefreshedEven
         NavigationBar kontakt = new NavigationBar("Om Kurland", "/about");
         NavigationBar review = new NavigationBar("Review", "/review");
         NavigationBar omKurland = new NavigationBar("Kontakt", "/contact");
-        NavigationBar indkøbskurv = new NavigationBar("Indkøbskurv", "/");
+        //NavigationBar indkøbskurv = new NavigationBar("Indkøbskurv", "/");
 
 
         navigationBarList.add(home);
